@@ -49,7 +49,7 @@ const getCurrentLevel = (index) => {
       height: 70
     }
     ],
-    instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods.</p>`
+    instruction: `<p class="flex font-bold text-lg" style="${style}">ALL Foods! Collect all the foods..</p>`
   },
   { 
     id: 3,
@@ -181,7 +181,6 @@ const getCurrentLevel = (index) => {
       {pos: createVector(800, 300), type: "", r: 90},
       {pos: createVector(300, 500), type: "", r: 40},
       {pos: createVector(200, 400), type: "", r: 50},
-      {pos: createVector(300, 300), type: "poisonous", r: 60},
       {pos: createVector(300, 200), type: "", r: 40},
       {pos: createVector(900, 400), type: "poisonous", r: 40},
       {pos: createVector(500, 450), type: "poisonous", r: 80},
@@ -191,10 +190,22 @@ const getCurrentLevel = (index) => {
     earthPos: createVector(1000, 500),
     helper: {pos: createVector(450, 50), r: 80 },
     foods: [{
-      pos: createVector(200, 150),
+      pos: createVector(300, 300),
       type: "turkey",
-      width: 30,
-      height: 40
+      width: 50,
+      height: 60
+    }, 
+    {
+      pos: createVector(630, 350),
+      type: "eggs",
+      width: 50,
+      height: 60
+    },
+    {
+      pos: createVector(830, 400),
+      type: "carrot",
+      width: 50,
+      height: 60
     }],
     instruction: `<p class="${className}" style="${style}">Remember, the bigger is not always the better.</p>`
   },
@@ -227,10 +238,16 @@ const getCurrentLevel = (index) => {
     earthPos: createVector(1000, 530),
     helper: {pos: createVector(300, 80), r: 87 },
     foods: [{
-      pos: createVector(200, 150),
+      pos: createVector(200, 190),
       type: "turkey",
-      width: 30,
-      height: 40
+      width: 50,
+      height: 60
+    },
+    {
+      pos: createVector(300, 230),
+      type: "broccoli",
+      width: 40,
+      height: 50
     }],
     instruction: `<p class="${className}" style="${style}">Touch the 'minus' planet to decrease your size. <span class-"inline"><img src="./assets/minus.png" width="20px"/></span></p>`
   },
