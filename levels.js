@@ -12,10 +12,16 @@ const getCurrentLevel = (index) => {
   const levels = [
   { 
     id: 1,
-    astronautPos: createVector(50,10),
+    astronautPos: createVector(100,500),
     planets: [],
     earthPos: createVector(1000, 400),
-    helper: {pos: createVector(300, 500), r: 80 },
+    helper: {pos: createVector(450, 500), r: 80 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "broccoli",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull yourself.</p>`
   },
   { 

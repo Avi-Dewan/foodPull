@@ -24,6 +24,7 @@ let failedSound;
 let clickSound;
 
 // characters
+let foods = []
 let planets = [];
 let astronaut;
 let helper;
@@ -185,6 +186,7 @@ function setup() {
 function startNewLevel() {
   life = 200;
   planets = [];
+  foods = [];
 
   instructionBox.innerHTML = level.instruction;
 
@@ -206,6 +208,11 @@ function startNewLevel() {
   })
   planets.push(earth)
 
+  level.foods.forEach(food => {
+    foods.push(new Food(foodImgs[food.type], food.pos.x, food.pos.y, food.width, food.height, food.type, astronaut));
+  })
+  console.log(foods)
+
   astronaut = new Astronaut(astronautImg, level.astronautPos, 0.0003, foodImgs);
 }
   
@@ -223,6 +230,9 @@ function draw() {
       planet.draw(astronaut)
     })
     astronaut.draw();
+    foods.forEach(food => {
+      food.draw(astronaut);
+    })
 
     if (astronaut.poisonous === 0) {
       image(lifeImg, width/2-115, 4, 24, 24);
