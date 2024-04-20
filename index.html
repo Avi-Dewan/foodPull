@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <main class="min-h-screen flex items-center justify-center">
+
+      <div class="flex items-center justify-center menuBox">
+        <div class="absolute flex items-center justify-center flex-col max-w-xl text-center" id="notification">
+          <p class="text-3xl font-bold text-white" id="notificationText"></p>
+          <div class="px-6 mt-8 py-3 rounded transition duration-300 hover:bg-gray-700 bg-gray-800 text-white cursor-pointer z-50" id="notificationBtn">Ok</div>
+        </div>
+      </div>
+
+      <div class="bg-gray-400 py-3 px-4 top-4 absolute rounded-full flex" id="pauseReset">
+        <div class="flex">
+          <img src="./assets/pause.png" alt="" width="32px" class="border-r border-gray-600 pr-3 cursor-pointer" id="pauseBtn">
+          <img src="./assets/reset.png" id="resetBtn" alt="" width="32px" class="pl-3 cursor-pointer" id="pauseBtn">
+        </div>
+      </div>
+
+      <div class="bg-gray-400 py-3 px-8 bottom-8 absolute rounded-full flex" id="instruction">
+        <div class="flex typewriter">
+          
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center bg-slate-950 menuBox" id="menu">
+
+        <!-- level list -->
+        <div id="levelBox" class="absolute flex items-center justify-center flex-col">
+          <div class="text-white title">Lost in Gravity</div>
+          <div class="levels flex gap-4 mt-8">
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl1">1</div>
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl2">2</div>
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl3">3</div>
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl4">4</div>
+          </div>
+
+          <div class="levels flex gap-4 mt-8">
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl5">5</div>
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl6">6</div>
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl7">7</div>
+            <div class="lvl bg-slate-800 hover:bg-slate-700 transition duration-300" id="lvl8">8</div>
+          </div>
+        </div>
+        
+        <!-- pause menu box -->
+        <div id="pauseMenu" class="absolute flex items-center justify-center flex-col">
+          <div class="text-white title">Lost in Gravity</div>
+          <div class="menuItem bg-slate-800 hover:bg-slate-700 transition duration-300 flex items-center justify-center" id="continueBtn">Continue</div>
+        </div>
+      </div>
+
+    </main>
+    <script src="sketch.js"></script>
+    <script src="./levels.js"></script>
+    <script src="./objects/planet.js"></script>
+    <script src="./objects/astronaut.js"></script>
+  </body>
+</html>
