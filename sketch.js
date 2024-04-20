@@ -7,6 +7,7 @@ let earthImg;
 let lifeImg;
 let poisonImg;
 let helperImg;
+let foodImgs = {}
 let plusImg;
 let plusPlanetImg;
 let minusImg;
@@ -124,7 +125,7 @@ function startGame() {
 
 
 function preload() {
-  astronautImg = loadImage('./assets/astronaut.png')
+  astronautImg = loadImage('./assets/basket.png')
   earthImg = loadImage('./assets/earth.png')
   for (let i = 0; i < totalPlanetImage; i++) {
     planetImg.push(loadImage(`./assets/planet${i+1}.png`));
@@ -132,6 +133,14 @@ function preload() {
   lifeImg = loadImage('./assets/life.png');
   poisonImg = loadImage('./assets/poison.png');
   helperImg = loadImage('./assets/ufo.png');
+
+  foodImgs['broccoli'] = loadImage('./assets/broccoli.png');
+  foodImgs['carrot'] = loadImage('./assets/carrot.png');
+  foodImgs['eggs'] = loadImage('./assets/eggs.png');
+  foodImgs['lettuce'] = loadImage('./assets/lettuce.png');
+  foodImgs['potato'] = loadImage('./assets/potato.png');
+  foodImgs['turkey'] = loadImage('./assets/turkey.png');
+
   plusImg = loadImage('./assets/plus.png');
   minusImg = loadImage('./assets/minus.png');
   plusPlanetImg = loadImage('./assets/plusPlanet.png');
@@ -160,7 +169,9 @@ function setup() {
     planets.push(new Planet(createVector(100, 100), createVector(0,0), 70, planetImg[0]));
     planets.push(new Planet(createVector(400, 400), createVector(0,0), 70, planetImg[1], "poisonous"));
     planets.push(earth)
-    astronaut = new Astronaut(astronautImg, createVector(150, 450), 0.0003);
+
+    console.log(foodImgs)
+    astronaut = new Astronaut(astronautImg, createVector(150, 450), 0.0003, foodImgs);
 
     // noLoop();
 
@@ -195,7 +206,7 @@ function startNewLevel() {
   })
   planets.push(earth)
 
-  astronaut = new Astronaut(astronautImg, level.astronautPos, 0.0003);
+  astronaut = new Astronaut(astronautImg, level.astronautPos, 0.0003, foodImgs);
 }
   
 function draw() {

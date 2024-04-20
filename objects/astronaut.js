@@ -2,16 +2,22 @@ class Astronaut {
 
     maxVel = 2.5
 
-    constructor(img, pos, k) {
+    constructor(img, pos, k, foodImgs) {
         this.img = img;
-        this.height = 50;
-        this.width = 25;
+        this.height = 40;
+        this.width = 80;
         this.pos = pos;
         this.resultant = createVector(0,0);
         this.k = k;
         this.vel = createVector(0,0);
         this.a = createVector(0,0);
         this.poisonous = 0;
+        this.foods = new Set();
+        this.foodImgs = foodImgs;
+    }
+
+    addFood(food) {
+        this.foods.add(food);
     }
 
     draw() {
@@ -47,6 +53,13 @@ class Astronaut {
             image(this.img, x, y, this.width, this.height);
             pop()
         } else {
+            if (this.foods.has("broccoli")) image(this.foodImgs["broccoli"], x+5, y-15, 20, 50);
+            if (this.foods.has("turkey")) image(this.foodImgs["turkey"], x+16, y-25, 50, 60);
+            if (this.foods.has("carrot")) image(this.foodImgs["carrot"], x+12, y-30, 30, 70);
+            if (this.foods.has("eggs")) image(this.foodImgs["eggs"], x+56, y-14, 20, 30);
+            if (this.foods.has("lettuce")) image(this.foodImgs["lettuce"], x+35, y-6, 16, 20);
+            if (this.foods.has("potato")) image(this.foodImgs["potato"], x+45, y-5, 20, 40);
+
             stroke(220)
             image(this.img, x, y, this.width, this.height);
         }
