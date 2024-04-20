@@ -250,7 +250,7 @@ function draw() {
 
     if (life <= 0) {
       astronaut.vel = createVector(0,0);
-      notiText = "You are not hulk!!"
+      notiText = "The food basket is not hulk!!"
       astronaut.poisonous += 5;
       failedSound.setVolume(1, 0);
       failedSound.play();

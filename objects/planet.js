@@ -121,7 +121,7 @@ class Planet {
             winSound.play();
             astronaut.vel = createVector(0,0);
             if (astronaut.poisonous === 0) {
-                notiText = "Congrats! You returned yourself home safely!"
+                notiText = "Congrats! You returned home with the foods."
             }
             astronaut.poisonous += 5;
             // TODO: prompt 
@@ -130,7 +130,7 @@ class Planet {
         else if(this.type === "earth"){
             astronaut.vel = createVector(0,0);
             if (astronaut.poisonous === 0) {
-                notiText = "You came to earth without food!!!!";
+                notiText = "You came to earth without food!!";
             }
             astronaut.poisonous += 5;
             failedSound.setVolume(1, 0);
@@ -138,13 +138,13 @@ class Planet {
         }
         else if(this.type == "helper"){
             astronaut.vel = createVector(0,0);
-            if (astronaut.poisonous === 0) notiText = "Nooo! Don't kill yourself like that !! The planet is poisonous"
+            if (astronaut.poisonous === 0) notiText = "Nooo! Don't smash the helper guy."
             astronaut.poisonous += 5;
             failedSound.setVolume(1, 0);
             failedSound.play()
         } else if(this.type == "poisonous"){
             astronaut.vel = createVector(0,0);
-            if (astronaut.poisonous === 0) notiText = "Dead ! You bumped yourself into a poisonous planet!"
+            if (astronaut.poisonous === 0) notiText = "Oh no! The foods became poisonous."
             astronaut.poisonous += 5;
             failedSound.setVolume(1, 0);
             failedSound.play()
@@ -179,7 +179,7 @@ class Planet {
             
             if(planet.type === "earth") {
                 astronaut.vel = createVector(0,0);
-                if (astronaut.poisonous === 0) notiText = "You just destroyed earth. Why'd you do that !!!!";
+                if (astronaut.poisonous === 0) notiText = "Oh no! The helper guy cannot live in the earth.";
                 astronaut.poisonous = 200;
                 showNotification();
                 failedSound.setVolume(1, 0);
