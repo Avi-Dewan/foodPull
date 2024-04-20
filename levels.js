@@ -18,7 +18,7 @@ const getCurrentLevel = (index) => {
     helper: {pos: createVector(450, 500), r: 80 },
     foods: [{
       pos: createVector(200, 150),
-      type: "broccoli",
+      type: "turkey",
       width: 30,
       height: 40
     }],
@@ -33,6 +33,12 @@ const getCurrentLevel = (index) => {
     ],
     earthPos: createVector(900, 400),
     helper: {pos: createVector(300, 450), r: 80 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "turkey",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="${className}" style="${style}">Avoid the poisonous planet. <span class-"inline"><img src="./assets/poison.png" width="30px"/></span></p>`
   },
   { 
@@ -46,6 +52,12 @@ const getCurrentLevel = (index) => {
     ],
     earthPos: createVector(900, 400),
     helper: {pos: createVector(250, 250), r: 80 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "turkey",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="${className}" style="${style}">Best of luck!</p>`
   },
   {
@@ -58,6 +70,12 @@ const getCurrentLevel = (index) => {
     ],
     earthPos: createVector(1000, 500),
     helper: {pos: createVector(450, 50), r: 80 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "turkey",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="${className}" style="${style}">Touch the 'plus' planet to increase your gavitational pull. <span class-"inline"><img src="./assets/plus.png" width="20px"/></span></p>`
   },
   {
@@ -73,6 +91,12 @@ const getCurrentLevel = (index) => {
     ],
     earthPos: createVector(1000, 500),
     helper: {pos: createVector(450, 50), r: 80 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "turkey",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="${className}" style="${style}">Best of luck</p>`
   },
   {
@@ -103,6 +127,12 @@ const getCurrentLevel = (index) => {
     ],
     earthPos: createVector(1000, 530),
     helper: {pos: createVector(300, 80), r: 87 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "turkey",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="${className}" style="${style}">Touch the 'minus' planet to decrease your size. <span class-"inline"><img src="./assets/minus.png" width="20px"/></span></p>`
   },
   {
@@ -123,6 +153,12 @@ const getCurrentLevel = (index) => {
     ],
     earthPos: createVector(1000, 500),
     helper: {pos: createVector(450, 50), r: 80 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "turkey",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="${className}" style="${style}">Remember, the bigger is not always the better.</p>`
   },
   {
@@ -206,6 +242,12 @@ const getCurrentLevel = (index) => {
     earthPos: createVector(900, 300),
     earthRad: 40,
     helper: {pos: createVector(90, 300), r: 80 },
+    foods: [{
+      pos: createVector(200, 150),
+      type: "turkey",
+      width: 30,
+      height: 40
+    }],
     instruction: `<p class="${className}" style="${style}">Can you complete the game?</p>`
   },
 ];

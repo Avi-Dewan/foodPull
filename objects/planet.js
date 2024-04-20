@@ -20,9 +20,9 @@ class Planet {
         }
     }
 
-    draw(astronaut) {
+    draw(astronaut, foods) {
         if (this.type === 'poisonous') this.img = poisonImg;
-        this.handleCollision(astronaut);
+        this.handleCollision(astronaut, foods);
         // this.update();
         if (this.img) {
             if (this.type === "earth" || this.type === "poisonous") {
@@ -109,12 +109,14 @@ class Planet {
         }
     }
 
-    handleCollision(astronaut){
+    handleCollision(astronaut, foods){
         if( ! astronaut.detectCollision(this) ){
             return ;
         }
 
-        if(this.type === "earth"){
+        let allGrabbed = foods.filter(food => !food.isGrabbed).length === 0;
+        if(this.type === "earth" && allGrabbed){
+
             winSound.setVolume(1, 0);
             winSound.play();
             astronaut.vel = createVector(0,0);
@@ -123,6 +125,16 @@ class Planet {
             }
             astronaut.poisonous += 5;
             // TODO: prompt 
+        }
+
+        else if(this.type === "earth"){
+            astronaut.vel = createVector(0,0);
+            if (astronaut.poisonous === 0) {
+                notiText = "You came to earth without food!!!!";
+            }
+            astronaut.poisonous += 5;
+            failedSound.setVolume(1, 0);
+            failedSound.play()            
         }
         else if(this.type == "helper"){
             astronaut.vel = createVector(0,0);

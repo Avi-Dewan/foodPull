@@ -22,6 +22,7 @@ let gulpSound;
 let winSound;
 let failedSound;
 let clickSound;
+let collectSound;
 
 // characters
 let foods = []
@@ -153,6 +154,7 @@ function preload() {
   winSound = loadSound('./assets/sounds/win2.mp3')
   failedSound = loadSound('./assets/sounds/failed.mp3')
   clickSound = loadSound('./assets/sounds/click.mp3')
+  collectSound = loadSound('./assets/sounds/collect_food.mp3')
 }
 
 function setup() {
@@ -227,7 +229,7 @@ function draw() {
       astronaut.drawTrace(planets);
     }
     planets.forEach(planet => {
-      planet.draw(astronaut)
+      planet.draw(astronaut, foods);
     })
     astronaut.draw();
     foods.forEach(food => {

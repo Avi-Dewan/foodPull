@@ -9,7 +9,7 @@ class Food {
     }
 
     draw(astronaut) {
-        this.detectCollision(astronaut)
+        if(!this.isGrabbed ) this.detectCollision(astronaut)
         if (!this.isGrabbed) image(this.img, this.pos.x, this.pos.y, this.width, this.height);
     }
 
@@ -27,8 +27,12 @@ class Food {
             x2 > foodX1 &&
             y1 < foodY2 &&
             y2 > foodY1) {
+
             this.isGrabbed = true;
             astronaut.addFood(this.type);
+            collectSound.setVolume(1, 0);
+            collectSound.play()  
         }
+
     }
 }
