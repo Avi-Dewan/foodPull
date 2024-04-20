@@ -121,7 +121,7 @@ class Planet {
             winSound.play();
             astronaut.vel = createVector(0,0);
             if (astronaut.poisonous === 0) {
-                notiText = "Congrats! You returned home with the foods."
+                notiText = "Congrats! Zorgons returned earth with the foods."
             }
             astronaut.poisonous += 5;
             // TODO: prompt 
@@ -130,7 +130,7 @@ class Planet {
         else if(this.type === "earth"){
             astronaut.vel = createVector(0,0);
             if (astronaut.poisonous === 0) {
-                notiText = "You came to earth without food!!";
+                notiText = "Zorgons has missed some foods!!";
             }
             astronaut.poisonous += 5;
             failedSound.setVolume(1, 0);
@@ -138,7 +138,7 @@ class Planet {
         }
         else if(this.type == "helper"){
             astronaut.vel = createVector(0,0);
-            if (astronaut.poisonous === 0) notiText = "Nooo! Don't smash the helper guy."
+            if (astronaut.poisonous === 0) notiText = "Zorgon you poissoned the food!"
             astronaut.poisonous += 5;
             failedSound.setVolume(1, 0);
             failedSound.play()
@@ -179,7 +179,7 @@ class Planet {
             
             if(planet.type === "earth") {
                 astronaut.vel = createVector(0,0);
-                if (astronaut.poisonous === 0) notiText = "Oh no! The helper guy cannot live in the earth.";
+                if (astronaut.poisonous === 0) notiText = "Oh no! The Zorgons cannot live in the earth.";
                 astronaut.poisonous = 200;
                 showNotification();
                 failedSound.setVolume(1, 0);
