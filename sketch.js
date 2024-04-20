@@ -58,23 +58,13 @@ const pauseResetMenu = document.getElementById('pauseReset');
 const notificationBox = document.getElementById('notification');
 const instructionBox = document.getElementById('instruction');
 
-const lvl1Btn = document.getElementById('lvl1');
-const lvl2Btn = document.getElementById('lvl2');
-const lvl3Btn = document.getElementById('lvl3');
-const lvl4Btn = document.getElementById('lvl4');
-const lvl5Btn = document.getElementById('lvl5');
-const lvl6Btn = document.getElementById('lvl6');
-const lvl7Btn = document.getElementById('lvl7');
-const lvl8Btn = document.getElementById('lvl8');
+const levelButtons = [...Array(8)].map((_, idx)=>{
+  return document.getElementById(`lvl${idx+1}`);
+})
 
-lvl1Btn.addEventListener('click', () => { currentLevel = 1; startGame(); });
-lvl2Btn.addEventListener('click', () => { currentLevel = 2; startGame(); });
-lvl3Btn.addEventListener('click', () => { currentLevel = 3; startGame(); });
-lvl4Btn.addEventListener('click', () => { currentLevel = 4; startGame(); });
-lvl5Btn.addEventListener('click', () => { currentLevel = 5; startGame(); });
-lvl6Btn.addEventListener('click', () => { currentLevel = 6; startGame(); });
-lvl7Btn.addEventListener('click', () => { currentLevel = 7; startGame(); });
-lvl8Btn.addEventListener('click', () => { currentLevel = 8; startGame(); });
+levelButtons.forEach((btn, idx)=>{
+  btn.addEventListener('click', () => {currentLevel = idx + 1; startGame();});
+})
 
 notificationBtn.addEventListener('click', () => {
   notificationBox.style.display = 'none';
