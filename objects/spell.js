@@ -1,5 +1,5 @@
 class Spell {
-  constructor(type, angle, x, y) {
+  constructor(type, angle, x, y, castSpells, catchSpells) {
     this.tailLength = 15;
     this.ghostSize = 20;
     this.wiggliness = 8;
@@ -15,6 +15,16 @@ class Spell {
     this.angle = (angle * 3.14) / 180;
 
     this.alive = true;
+
+    this.catchSpells = catchSpells;
+
+    if (type === "fire") {
+      castSpells?.at(0).setVolume(1, 0);
+      castSpells?.at(0).play();
+    } else if (type === "water") {
+      castSpells?.at(1).setVolume(1, 0);
+      castSpells?.at(1).play();
+    }
   }
 
   detectCollision(helper, cx, cy, rad) {
@@ -62,11 +72,11 @@ class Spell {
     }
 
     strokeWeight(4);
-    if(this.type === 'fire'){
+    if (this.type === "fire") {
       stroke("#FF421D");
-    } else if(this.type === 'water'){
+    } else if (this.type === "water") {
       stroke("#3E7FFF");
-    } else if(this.type === 'poison'){
+    } else if (this.type === "poison") {
       stroke("#8327C5");
     }
 
@@ -79,11 +89,11 @@ class Spell {
         (this.ghostSize * (this.tail.length - index)) / this.tail.length;
       const pointAlpha = (255 * (this.tail.length - index)) / this.tail.length;
 
-      if(this.type === 'fire'){
+      if (this.type === "fire") {
         fill(255, 169, 0, pointAlpha);
-      } else if(this.type === 'water'){
+      } else if (this.type === "water") {
         fill(101, 185, 255, pointAlpha);
-      } else if(this.type === 'poison'){
+      } else if (this.type === "poison") {
         fill(131, 92, 197, pointAlpha);
       }
       ellipse(tailPoint.x, tailPoint.y, pointSize);
@@ -93,6 +103,14 @@ class Spell {
       ) {
         this.alive = false;
         console.log("collision detected");
+
+        if (type === "fire") {
+          catchSpells?.at(0).setVolume(1, 0);
+          catchSpells?.at(0).play();
+        } else if (type === "water") {
+          catchSpells?.at(1).setVolume(1, 0);
+          catchSpells?.at(1).play();
+        }
       }
     }
 

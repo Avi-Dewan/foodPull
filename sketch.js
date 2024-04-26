@@ -26,6 +26,9 @@ let winSound;
 let failedSound;
 let clickSound;
 let collectSound;
+let castSpells = []; // 0-> fire, 1 -> water, 2 -> poison
+let catchSpells = [];
+
 
 // characters
 let foods = [];
@@ -152,6 +155,11 @@ function preload() {
   failedSound = loadSound("./assets/sounds/failed.mp3");
   clickSound = loadSound("./assets/sounds/click.mp3");
   collectSound = loadSound("./assets/sounds/collect_food.mp3");
+
+  for (let i = 0; i < 2; i++) {
+    castSpells.push(loadSound(`./assets/sounds/cast-${i}.mp3`));
+    catchSpells.push(loadSound(`./assets/sounds/catch-${i}.mp3`));
+  }
 }
 
 function setup() {
@@ -286,6 +294,8 @@ function startNewLevel() {
     level.orionPos,
     level.orionAppearance,
     level.cycleTime,
+    castSpells,
+    catchSpells
   );
 }
 

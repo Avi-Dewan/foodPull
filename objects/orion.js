@@ -7,6 +7,8 @@ class Orion {
     positions,
     orionAppearance,
     cycleTime,
+    castSpells,
+    catchSpells,
     width = 100,
     height = 120
   ) {
@@ -16,6 +18,9 @@ class Orion {
     this.height = height;
     this.orionAppearance = orionAppearance;
     this.cycleTime = cycleTime;
+
+    this.castSpells = castSpells;
+    this.catchSpells = catchSpells;
   }
 
   draw(currentSpells) {
@@ -64,9 +69,11 @@ class Orion {
         currentSpells.push(
           new Spell(
             this.positions[posIdx].type,
-            90- this.positions[posIdx].rotation,
+            90 - this.positions[posIdx].rotation,
             this.positions[posIdx].pos.x + x * cos(theta) - y * sin(theta),
-            this.positions[posIdx].pos.y + x * sin(theta) + y * cos(theta)
+            this.positions[posIdx].pos.y + x * sin(theta) + y * cos(theta),
+            this.castSpells,
+          this.catchSpells
           )
         );
       }
