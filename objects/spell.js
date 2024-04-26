@@ -1,3 +1,21 @@
+const colors = {
+  'fire': {
+    'fill': [131, 92, 197],
+    'shadow': "#ff6e00",
+    'falloff': .6
+  },
+  'water': {
+    'fill': [0, 0, 255],
+    'shadow': "#4474FC",
+    'falloff': .6
+  },
+  'poison': {
+    'fill': [100, 10, 255],
+    'shadow': "#3333ff",
+    'falloff': 1
+  }
+}
+
 class Spell {
   constructor(type, angle, x, y, castSpells, catchSpells) {
     this.tailLength = 12;
@@ -25,6 +43,10 @@ class Spell {
       castSpells?.at(1).setVolume(1, 0);
       castSpells?.at(1).play();
     }
+
+    this.xs = [x, x+600, x+1200, x+1600];
+    this.ys = [y, y+400, y+400, y]
+    this.t = 0;
   }
 
   detectCollision(helper, cx, cy, rad) {
@@ -37,66 +59,54 @@ class Spell {
   }
 
   draw(helper) {
-    // The cos() function gives us a value that bounces between -1 and 1.
-    // We can use that to create animations!
-    if (this.doDraw === 2) {
-      this.doDraw = 0;
+    push();
 
-      this.ghostY +=
-        cos(frameCount / 10) * this.wiggliness +
-        this.floatiness * cos(this.angle);
-      this.ghostX += this.floatiness * sin(this.angle);
+    this.ghostX = Math.pow(1-this.t, 3) * this.xs[0]
+    + Math.pow(1-this.t, 2) * this.t * this.xs[1]
+    + (1-this.t) * this.t*this.t * this.xs[2]
+    + Math.pow(this.t, 3) * this.xs[3];
 
-      // If the ghost goes above the top of the canvas, move it back to the bottom.
-      if (
-        this.ghostY < -this.ghostSize ||
-        this.ghostY >= height - this.ghostSize
-      ) {
-        this.alive = false;
-      }
-      if (
-        this.ghostX < -this.ghostSize ||
-        this.ghostX >= width - this.ghostSize
-      ) {
-        this.alive = false;
-      }
 
-      // Add a point to the beginning of the array.
-      this.tail.unshift({ x: this.ghostX, y: this.ghostY });
-      // If the array is too big, remove the last point.
-      if (this.tail.length > this.tailLength) {
-        this.tail.pop();
-      }
-    } else {
-      this.doDraw = this.doDraw + 1;
+    this.ghostY = Math.pow(1-this.t, 3) * this.ys[0]
+    + Math.pow(1-this.t, 2) * this.t * this.ys[1]
+    + (1-this.t) * this.t*this.t * this.ys[2]
+    + Math.pow(this.t, 3) * this.ys[3];
+
+
+    console.log(this.ghostX, this.ghostY);
+
+    this.t += .005;
+
+    if(this.t > 1){
+      this.alive = false;
     }
 
-    strokeWeight(4);
-    if (this.type === "fire") {
-      stroke("#FF421D");
-    } else if (this.type === "water") {
-      stroke("#3E7FFF");
-    } else if (this.type === "poison") {
-      stroke("#8327C5");
+    // Add a point to the beginning of the array.
+    this.tail.unshift({ x: this.ghostX, y: this.ghostY });
+    // If the array is too big, remove the last point.
+    if (this.tail.length > this.tailLength) {
+      this.tail.pop();
     }
+
+    drawingContext.shadowColor = colors[this.type]['shadow'];
 
     // Loop over the tail and draw the points.
     for (var index = 0; index < this.tail.length; index++) {
+      let reverseIndex = this.tail.length - index;
+      let mass = reverseIndex * 1.5;
       const tailPoint = this.tail[index];
 
-      // Tail gets smaller and more transparent.
-      const pointSize =
-        (this.ghostSize * (this.tail.length - index)) / this.tail.length;
-      const pointAlpha = (255 * (this.tail.length - index)) / this.tail.length;
+      drawingContext.shadowBlur = mass;
 
-      if (this.type === "fire") {
-        fill(255, 169, 0, pointAlpha);
-      } else if (this.type === "water") {
-        fill(101, 185, 255, pointAlpha);
-      } else if (this.type === "poison") {
-        fill(131, 92, 197, pointAlpha);
-      }
-      ellipse(tailPoint.x, tailPoint.y, pointSize);
+      // Tail gets smaller and more transparent.
+      const pointSize = this.ghostSize * reverseIndex / this.tail.length;
+      const pointAlpha = 255 * reverseIndex / this.tail.length;
+
+      stroke(0);
+      strokeWeight(mass);
+      fill(colors[this.type]['fill'][0], colors[this.type]['fill'][1], colors[this.type]['fill'][2], pointAlpha);
+      
+      ellipse(tailPoint.x, tailPoint.y, pointSize * colors[this.type]['falloff']);
 
       if (
         this.detectCollision(helper, tailPoint.x, tailPoint.y, pointSize / 2)
@@ -113,6 +123,8 @@ class Spell {
         }
       }
     }
+
+    pop();
 
     // Draw the ghost's face.
     // fill(255,255,255);
