@@ -3,16 +3,19 @@ const colors = {
     fill: [131, 92, 197],
     shadow: "#ff6e00",
     falloff: 0.6,
+    shades: ["#ffff00", "#ffff00", "#ffff00", '#ffff00']
   },
   water: {
     fill: [0, 0, 255],
     shadow: "#4474FC",
     falloff: 0.6,
+    shades: ["#2274FF", "#4474CC", "#2474AC"]
   },
   poison: {
     fill: [100, 10, 255],
     shadow: "#3333ff",
     falloff: 1,
+    shades: ["#5533aa", "#4433bb", "#8833ee"]
   },
 };
 
@@ -27,6 +30,7 @@ class Spell {
     this.ghostX = x;
     this.ghostY = y;
     this.tail = [];
+    this.stars = [];
 
     this.type = type;
     this.angle = (angle * 3.14) / 180;
@@ -138,7 +142,16 @@ class Spell {
     // Add a point to the beginning of the array.
     this.tail.unshift({ x: this.ghostX, y: this.ghostY });
     if (this.tail.length > this.tailLength) {
-      this.tail.pop();
+      let pos = this.tail.pop()
+
+      if(this.stars.length == 0 || dist(this.stars[0].x, this.stars[0].y, pos.x, pos.y) > 50){
+        let scale = Math.random() * 1.5 + .2;
+        let colorIdx = Math.random() * colors[this.type]['shades'].length;
+        colorIdx = Math.floor(colorIdx);
+        this.stars.unshift(new Star(pos.x + Math.random() * 20 - 10, pos.y + Math.random() * 20 - 5, scale, colors[this.type]['shades'][colorIdx]));
+      }
+
+      if(this.stars.length >= 5) this.stars.pop();
     }
 
     drawingContext.shadowColor = colors[this.type]["shadow"];
@@ -173,6 +186,11 @@ class Spell {
 
     pop();
 
+    strokeWeight(0);
+    for(let i = 0; i < this.stars.length; i++){
+      this.stars[i].draw();
+    }
+
     // let s = new Star(100, 100, 10, 20, '#FF0000')
     // s.draw();
 
@@ -187,28 +205,35 @@ class Spell {
 }
 
 class Star{
-  constructor(x, y, radius1, radius2, color){
+  constructor(x, y, scale, color){
     this.x = x;
     this.y = y;
-    this.radius1 = radius1;
-    this.radius2 = radius2;
+    this.radius1 = 3;
+    this.radius2 = 6;
     this.color = color;
+    this.scale = scale;
   }
 
   draw(npoints=5) {
     let angle = TWO_PI / npoints;
     let halfAngle = angle / 2.0;
 
+    push();
+    translate(this.x, this.y);
+    scale(this.scale);
+
     fill(this.color);
     beginShape();
     for (let a = 0; a < TWO_PI; a += angle) {
-      let sx = this.x + cos(a) * this.radius2;
-      let sy = this.y + sin(a) * this.radius2;
+      let sx =  cos(a) * this.radius2;
+      let sy =  sin(a) * this.radius2;
       vertex(sx, sy);
-      sx = this.x + cos(a + halfAngle) * this.radius1;
-      sy = this.y + sin(a + halfAngle) * this.radius1;
+      sx =  cos(a + halfAngle) * this.radius1;
+      sy =  sin(a + halfAngle) * this.radius1;
       vertex(sx, sy);
     }
     endShape(CLOSE);
+
+    pop();
   }
 }
