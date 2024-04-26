@@ -1,5 +1,5 @@
-const CANVAS_WIDTH = 1400;
-const CANVAS_HEIGHT = 700;
+const CANVAS_WIDTH = 1600;
+const CANVAS_HEIGHT = 800;
 
 // images
 let astronautImg;
@@ -15,6 +15,10 @@ let minusImg;
 let minusPlanetImg;
 let totalPlanetImage = 7;
 let spellImages = {};
+let potImg;
+let potFireImg;
+let potFoodImg;
+let potFireFoodImg;
 
 let currentSpells = [];
 
@@ -160,6 +164,11 @@ function preload() {
   failedSound = loadSound("./assets/sounds/failed.mp3");
   clickSound = loadSound("./assets/sounds/click.mp3");
   collectSound = loadSound("./assets/sounds/collect_food.mp3");
+
+  potImg = loadImage("./assets/pot.png");
+  potFireImg = loadImage("./assets/pot-fire.png");
+  potFoodImg = loadImage("./assets/pot-food.png");
+  potFireFoodImg = loadImage("./assets/pot-fire-food.png");
 
   for (let i = 0; i < 2; i++) {
     castSpells.push(loadSound(`./assets/sounds/cast-${i}.mp3`));

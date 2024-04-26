@@ -1,20 +1,20 @@
 const colors = {
-  'fire': {
-    'fill': [131, 92, 197],
-    'shadow': "#ff6e00",
-    'falloff': .6
+  fire: {
+    fill: [131, 92, 197],
+    shadow: "#ff6e00",
+    falloff: 0.6,
   },
-  'water': {
-    'fill': [0, 0, 255],
-    'shadow': "#4474FC",
-    'falloff': .6
+  water: {
+    fill: [0, 0, 255],
+    shadow: "#4474FC",
+    falloff: 0.6,
   },
-  'poison': {
-    'fill': [100, 10, 255],
-    'shadow': "#3333ff",
-    'falloff': 1
-  }
-}
+  poison: {
+    fill: [100, 10, 255],
+    shadow: "#3333ff",
+    falloff: 1,
+  },
+};
 
 class Spell {
   constructor(type, angle, x, y, castSpells, catchSpells) {
@@ -32,6 +32,7 @@ class Spell {
     this.angle = (angle * 3.14) / 180;
 
     this.alive = true;
+    this.state = "active";
 
     this.catchSpells = catchSpells;
 
@@ -43,8 +44,7 @@ class Spell {
       castSpells?.at(1).play();
     }
 
-    this.weights = Array.from({length: 10}, () => Math.random() * 20);
-    this.waves = Array.from({length: 10}, () => Math.floor(Math.random() * 2));
+    this.weights = Array.from({ length: 5 }, () => Math.random() * 20);
   }
 
   detectCollision(helper, cx, cy, rad) {
@@ -56,7 +56,7 @@ class Spell {
     return distance < r + rad;
   }
 
-  detectCollisionWithBasket(astronaut, cx, cy, rad){
+  detectCollisionWithBasket(astronaut, cx, cy, rad) {
     // TODO: better collision detect: https://editor.p5js.org/mrbombmusic/sketches/l95s9fZJY
     // return dist(this.center().x, this.center().y, planet.pos.x, planet.pos.y) < planet.r;
     let rx = astronaut.pos.x;
@@ -85,7 +85,15 @@ class Spell {
       this.detectCollision(helper, this.ghostX, this.ghostY, this.ghostSize / 2)
     ) {
       this.alive = false;
-      console.log("collision detected");
+      if (spellsCollected[this.type]) {
+        if (spellsCollected[this.type][0] < spellsCollected[this.type][1]) {
+          spellsCollected[this.type][0]++;
+        } else {
+          life -= 40;
+        }
+      } else {
+        life -= 40;
+      }
 
       if (this.type === "fire") {
         catchSpells?.at(0).setVolume(1, 0);
@@ -95,28 +103,33 @@ class Spell {
         catchSpells?.at(1).play();
       }
 
-      return ;
+      return;
     }
 
-    if(this.detectCollisionWithBasket(astronaut, this.ghostX, this.ghostY, this.ghostSize / 2)){
+    if (
+      this.detectCollisionWithBasket(
+        astronaut,
+        this.ghostX,
+        this.ghostY,
+        this.ghostSize / 2
+      )
+    ) {
       this.alive = false;
+      life -= 20;
     }
     push();
 
     var incrY = 0;
-    for(var i = 0; i < 10; i++){
-      if(this.waves[i] === 0){
-        incrY +=  this.weights[i] * sin(this.incrX / 100);
-      }
-      if(this.waves[i] === 1){
-        incrY +=  this.weights[i] * sin(this.incrX / 100);
-      }
+    for (var i = 0; i < 5; i++) {
+      incrY += this.weights[i] * sin(this.incrX / 100);
     }
 
-    this.ghostX = this.baseX + this.incrX * cos(this.angle) - incrY * sin(this.angle);
-    this.ghostY = this.baseY + this.incrX * sin(this.angle) + incrY * cos(this.angle);
+    this.ghostX =
+      this.baseX + this.incrX * cos(this.angle) - incrY * sin(this.angle);
+    this.ghostY =
+      this.baseY + this.incrX * sin(this.angle) + incrY * cos(this.angle);
 
-    if(this.incrX > width) {
+    if (this.incrX > width) {
       this.alive = false;
     }
 
@@ -128,7 +141,7 @@ class Spell {
       this.tail.pop();
     }
 
-    drawingContext.shadowColor = colors[this.type]['shadow'];
+    drawingContext.shadowColor = colors[this.type]["shadow"];
 
     // Loop over the tail and draw the points.
     for (var index = 0; index < this.tail.length; index++) {
@@ -139,14 +152,23 @@ class Spell {
       drawingContext.shadowBlur = mass;
 
       // Tail gets smaller and more transparent.
-      const pointSize = this.ghostSize * reverseIndex / this.tail.length;
-      const pointAlpha = 255 * reverseIndex / this.tail.length;
+      const pointSize = (this.ghostSize * reverseIndex) / this.tail.length;
+      const pointAlpha = (255 * reverseIndex) / this.tail.length;
 
       stroke(0);
       strokeWeight(mass);
-      fill(colors[this.type]['fill'][0], colors[this.type]['fill'][1], colors[this.type]['fill'][2], pointAlpha);
-      
-      ellipse(tailPoint.x, tailPoint.y, pointSize * colors[this.type]['falloff']);  
+      fill(
+        colors[this.type]["fill"][0],
+        colors[this.type]["fill"][1],
+        colors[this.type]["fill"][2],
+        pointAlpha
+      );
+
+      ellipse(
+        tailPoint.x,
+        tailPoint.y,
+        pointSize * colors[this.type]["falloff"]
+      );
     }
 
     pop();

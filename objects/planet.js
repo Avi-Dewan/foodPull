@@ -26,7 +26,7 @@ class Planet {
     if (this.img) {
       if (this.type === "earth" || this.type === "poisonous") {
         image(
-          this.img,
+          spellsCollected["fire"]?.at(0) > 0 ? potFireImg : potImg,
           this.pos.x - this.r / 2 - 10,
           this.pos.y - this.r / 2 - 10,
           this.r + 20,
