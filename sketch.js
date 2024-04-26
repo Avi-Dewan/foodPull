@@ -281,14 +281,17 @@ function startNewLevel() {
   console.log(foods);
 
   astronaut = new Astronaut(astronautImg, level.astronautPos, 0.0003, foodImgs);
-  orion = new Orion(orionImg, level.orionPos);
+  orion = new Orion(
+    orionImg,
+    level.orionPos,
+    level.orionAppearance,
+    level.cycleTime
+  );
 }
 
 function draw() {
   background(10);
   drawbg();
-
-  orion.draw(2);
 
   if (run)
     bgSound.setVolume(
@@ -308,6 +311,7 @@ function draw() {
   });
 
   if (astronaut.poisonous === 0) {
+    orion.draw();
     image(lifeImg, width / 2 - 115, 10, 24, 24);
     strokeWeight(6);
     stroke(200);

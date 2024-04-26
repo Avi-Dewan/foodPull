@@ -1,34 +1,72 @@
 let fade = 0;
+let posIdx = -1;
 
 class Orion {
-  constructor(img, positions, width = 100, height = 120) {
+  constructor(
+    img,
+    positions,
+    orionAppearance,
+    cycleTime,
+    width = 100,
+    height = 120
+  ) {
     this.img = img;
     this.positions = positions;
     this.width = width;
     this.height = height;
+    this.orionAppearance = orionAppearance;
+    this.cycleTime = cycleTime;
   }
 
-  draw(posIdx) {
+  draw() {
+    posIdx = -1;
+    for (let i = 0; i < this.orionAppearance?.length - 1; i++) {
+      if (
+        frameCount % this.cycleTime > this.orionAppearance[i] &&
+        (frameCount % this.cycleTime) - this.orionAppearance[i] < 200
+      ) {
+        posIdx = i;
+      }
+    }
+
     push();
 
-    translate(this.positions[posIdx].pos.x, this.positions[posIdx].pos.y);
-    rotate((this.positions[posIdx].rotation * PI) / 180);
+    if (posIdx >= 0) {
 
-    tint(175, fade);
-    image(this.img, 0, 0, this.width, this.height);
-    pop();
+      translate(this.positions[posIdx].pos.x, this.positions[posIdx].pos.y);
+      rotate((this.positions[posIdx].rotation * PI) / 180);
 
-    let x = this.width;
-    let y = 45;
-    let theta = (this.positions[posIdx].rotation * PI) / 180;
+      // only god knows
+      tint(
+        175,
+        Math.min(
+          Math.min(
+            (((frameCount % this.cycleTime) - this.orionAppearance[posIdx]) *
+              255) /
+              40,
+            ((this.orionAppearance[posIdx] +
+              200 -
+              (frameCount % this.cycleTime)) *
+              255) /
+              40
+          ),
+          255
+        )
+      );
+      image(this.img, 0, 0, this.width, this.height);
+      pop();
 
-    ellipse(
-      this.positions[posIdx].pos.x + x * cos(theta) - y * sin(theta),
-      this.positions[posIdx].pos.y + x * sin(theta) + y * cos(theta),
-      10,
-      10
-    );
+      let x = this.width;
+      let y = 45;
+      let theta = (this.positions[posIdx].rotation * PI) / 180;
+      //   if (fade < 255) fade += 3;
+    }
 
-    if (fade < 255) fade += 3;
+    // ellipse(
+    //   this.positions[posIdx].pos.x + x * cos(theta) - y * sin(theta),
+    //   this.positions[posIdx].pos.y + x * sin(theta) + y * cos(theta),
+    //   10,
+    //   10
+    // );
   }
 }

@@ -29,6 +29,8 @@ const getCurrentLevel = (index) => {
         { pos: createVector(20, 500), rotation: 0 },
         { pos: createVector(600, 50), rotation: 60 },
       ],
+      orionAppearance: [100, 400, 800, 1200],
+      cycleTime: 1200,
       instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods.</p>`,
     },
     {
