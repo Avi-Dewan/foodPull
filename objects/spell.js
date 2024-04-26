@@ -3,7 +3,7 @@ const colors = {
     fill: [131, 92, 197],
     shadow: "#ff6e00",
     falloff: 0.6,
-    shades: ["#ffff00", "#ffff00", "#ffff00", '#ffff00']
+    shades: ["#ffff00", "#ee6600", "#eeee00", '#aabb00']
   },
   water: {
     fill: [0, 0, 255],
@@ -13,9 +13,9 @@ const colors = {
   },
   poison: {
     fill: [100, 10, 255],
-    shadow: "#3333ff",
+    shadow: "#00ff00",
     falloff: 1,
-    shades: ["#5533aa", "#4433bb", "#8833ee"]
+    shades: ["#00ddaa", "#22ee00", "#11ff00"]
   },
 };
 
@@ -151,9 +151,20 @@ class Spell {
         let colorIdx = Math.random() * colors[this.type]['shades'].length;
         colorIdx = Math.floor(colorIdx);
         this.stars.unshift(new Star(pos.x + Math.random() * 20 - 10, pos.y + Math.random() * 20 - 5, scale, colors[this.type]['shades'][colorIdx]));
+
+
+        scale = Math.random() * .7 + .1;
+        colorIdx = Math.random() * colors[this.type]['shades'].length;
+        colorIdx = Math.floor(colorIdx);
+        this.stars.unshift(new Star(pos.x + Math.random() * 30, pos.y + Math.random() * 30 - 15, scale, colors[this.type]['shades'][colorIdx]));
+
+        scale = Math.random() * .7 + .1;
+        colorIdx = Math.random() * colors[this.type]['shades'].length;
+        colorIdx = Math.floor(colorIdx);
+        this.stars.unshift(new Star(pos.x + Math.random() * 30 , pos.y + Math.random() * 30 - 15, scale, colors[this.type]['shades'][colorIdx]));
       }
 
-      if(this.stars.length >= 5) this.stars.pop();
+      if(this.stars.length >= 15) this.stars.pop();
     }
 
     drawingContext.shadowColor = colors[this.type]["shadow"];
