@@ -104,10 +104,10 @@ class Spell {
         this.alive = false;
         console.log("collision detected");
 
-        if (type === "fire") {
+        if (this.type === "fire") {
           catchSpells?.at(0).setVolume(1, 0);
           catchSpells?.at(0).play();
-        } else if (type === "water") {
+        } else if (this.type === "water") {
           catchSpells?.at(1).setVolume(1, 0);
           catchSpells?.at(1).play();
         }
