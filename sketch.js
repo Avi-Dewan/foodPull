@@ -1,5 +1,5 @@
-const CANVAS_WIDTH = 1200;
-const CANVAS_HEIGHT = 600;
+const CANVAS_WIDTH = 1400;
+const CANVAS_HEIGHT = 700;
 
 // images
 let astronautImg;
@@ -227,13 +227,13 @@ function draw() {
     })
 
     if (astronaut.poisonous === 0) {
-      image(lifeImg, width/2-115, 4, 24, 24);
+      image(lifeImg, width/2-115, 10, 24, 24);
       strokeWeight(6);
       stroke(200);
       drawingContext.setLineDash([30,0]);
-      line(width/2+30-115, 16, width/2+30-115+200, 16);
+      line(width/2+30-115, 20, width/2+30-115+200, 20);
       stroke("#fc4f4f");
-      line(width/2+30-115, 16, width/2+30-115+max(0, life), 16);
+      line(width/2+30-115, 20, width/2+30-115+max(0, life), 20);
       
     }
     helper.update(planets);
