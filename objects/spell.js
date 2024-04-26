@@ -44,8 +44,7 @@ class Spell {
       castSpells?.at(1).play();
     }
 
-    this.weights = Array.from({length: 10}, () => Math.random() * 20);
-    this.waves = Array.from({length: 10}, () => Math.floor(Math.random() * 2));
+    this.weights = Array.from({ length: 5 }, () => Math.random() * 20);
   }
 
   detectCollision(helper, cx, cy, rad) {
@@ -87,7 +86,11 @@ class Spell {
     ) {
       this.alive = false;
       if (spellsCollected[this.type]) {
-        spellsCollected[this.type][0] += 1; // TODO: if collects more
+        if (spellsCollected[this.type][0] < spellsCollected[this.type][1]) {
+          spellsCollected[this.type][0]++;
+        } else {
+          life -= 40;
+        }
       } else {
         life -= 40;
       }
@@ -117,19 +120,16 @@ class Spell {
     push();
 
     var incrY = 0;
-    for(var i = 0; i < 10; i++){
-      if(this.waves[i] === 0){
-        incrY +=  this.weights[i] * sin(this.incrX / 100);
-      }
-      if(this.waves[i] === 1){
-        incrY +=  this.weights[i] * sin(this.incrX / 100);
-      }
+    for (var i = 0; i < 5; i++) {
+      incrY += this.weights[i] * sin(this.incrX / 100);
     }
 
-    this.ghostX = this.baseX + this.incrX * cos(this.angle) - incrY * sin(this.angle);
-    this.ghostY = this.baseY + this.incrX * sin(this.angle) + incrY * cos(this.angle);
+    this.ghostX =
+      this.baseX + this.incrX * cos(this.angle) - incrY * sin(this.angle);
+    this.ghostY =
+      this.baseY + this.incrX * sin(this.angle) + incrY * cos(this.angle);
 
-    if(this.incrX > width) {
+    if (this.incrX > width) {
       this.alive = false;
     }
 
