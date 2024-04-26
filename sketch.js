@@ -317,8 +317,18 @@ function startNewLevel() {
 }
 
 function draw() {
+  // translate(-width / 2, -height / 2);
+  blendMode(BLEND);
   background(10);
+  blendMode(SCREEN);
+
   drawbg();
+
+  Object.keys(foodsCollected).forEach((key, i) => {
+    foodsCollected[key][0] = foods.filter(
+      (food) => food.type === key && food.isGrabbed
+    ).length;
+  });
 
   Object.keys(foodsCollected).forEach((key, i) => {
     image(foodImgs[key], 20, 10 + 30 * i, 20, 20);
@@ -364,10 +374,17 @@ function draw() {
   if (astronaut.poisonous === 0) {
     orion.draw(currentSpells);
     image(lifeImg, width / 2 - 115, 10, 24, 24);
+    drawingContext.setLineDash([30, 0]);
     strokeWeight(6);
     stroke(200);
-    drawingContext.setLineDash([30, 0]);
-    line(width / 2 + 30 - 115, 20, width / 2 + 30 - 115 + 200, 20);
+    if (life !== 200) {
+      line(
+        width / 2 + 30 - 115 + max(0, life),
+        20,
+        width / 2 + 30 - 115 + 200,
+        20
+      );
+    }
     stroke("#fc4f4f");
     line(width / 2 + 30 - 115, 20, width / 2 + 30 - 115 + max(0, life), 20);
   }

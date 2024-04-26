@@ -68,7 +68,7 @@ class Astronaut {
       if (this.foods.has("turkey"))
         image(this.foodImgs["turkey"], x + 16, y - 25, 50, 60);
       if (this.foods.has("carrot"))
-        image(this.foodImgs["carrot"], x + 12, y - 30, 30, 70);
+        image(this.foodImgs["carrot"], x + 12, y - 35, 30, 70);
       if (this.foods.has("eggs"))
         image(this.foodImgs["eggs"], x + 56, y - 14, 20, 30);
       if (this.foods.has("lettuce"))
@@ -141,7 +141,7 @@ class Astronaut {
           stroke(100, 100, 255, opacity);
         }
 
-        // drawingContext.setLineDash([3,6]);
+        drawingContext.setLineDash([3, 6]);
         line(planet.pos.x, planet.pos.y, this.center().x, this.center().y);
       }
     });
