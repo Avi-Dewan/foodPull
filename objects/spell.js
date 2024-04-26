@@ -21,7 +21,7 @@ class Spell {
     this.tailLength = 12;
     this.ghostSize = 20;
     this.wiggliness = 6;
-    this.floatiness = 7;
+    this.baseY = y;
 
     this.ghostX = x;
     this.ghostY = y;
@@ -44,9 +44,8 @@ class Spell {
       castSpells?.at(1).play();
     }
 
-    this.xs = [x, x+600, x+1200, x+1600];
-    this.ys = [y, y+400, y+400, y]
-    this.t = 0;
+    this.weights = Array.from({length: 10}, () => Math.random() * 20);
+    this.waves = Array.from({length: 10}, () => Math.floor(Math.random() * 2));
   }
 
   detectCollision(helper, cx, cy, rad) {
@@ -105,22 +104,18 @@ class Spell {
     }
     push();
 
-    this.ghostX = Math.pow(1-this.t, 3) * this.xs[0]
-    + Math.pow(1-this.t, 2) * this.t * this.xs[1]
-    + (1-this.t) * this.t*this.t * this.xs[2]
-    + Math.pow(this.t, 3) * this.xs[3];
-
-
-    this.ghostY = Math.pow(1-this.t, 3) * this.ys[0]
-    + Math.pow(1-this.t, 2) * this.t * this.ys[1]
-    + (1-this.t) * this.t*this.t * this.ys[2]
-    + Math.pow(this.t, 3) * this.ys[3];
-
-    this.t += .005;
-
-    if(this.t > 1){
-      this.alive = false;
+    this.ghostY = this.baseY;
+    console.log(this.ghostY, this.baseY, sin(this.ghostX));
+    for(var i = 0; i < 10; i++){
+      if(this.waves[i] === 0){
+        this.ghostY +=  this.weights[i] * cos(this.ghostX / 100);
+      }
+      if(this.waves[i] === 1){
+        this.ghostY +=  this.weights[i] * sin(this.ghostX / 100);
+      }
     }
+
+    this.ghostX += Math.random() * 2 + 1;
 
     // Add a point to the beginning of the array.
     this.tail.unshift({ x: this.ghostX, y: this.ghostY });
@@ -133,7 +128,7 @@ class Spell {
     // Loop over the tail and draw the points.
     for (var index = 0; index < this.tail.length; index++) {
       let reverseIndex = this.tail.length - index;
-      let mass = reverseIndex * 1.5;
+      let mass = reverseIndex * 2;
       const tailPoint = this.tail[index];
 
       drawingContext.shadowBlur = mass;
