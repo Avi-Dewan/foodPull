@@ -12,7 +12,9 @@ class Spell{
     this.doDraw = 0;
 
     this.type = type;
-    this.angle = angle;
+    this.angle = angle * 3.14 / 180;
+
+    this.alive = true;
   }
   
   draw() {    
@@ -21,12 +23,15 @@ class Spell{
     if(this.doDraw == 2){
       this.doDraw = 0;
 
-      this.ghostX += cos(frameCount / 10) * this.wiggliness;
-      this.ghostY -= this.floatiness;
+      this.ghostY += cos(frameCount / 10) * this.wiggliness + this.floatiness * cos(this.angle);
+      this.ghostX -= this.floatiness * sin(this.angle);
 
       // If the ghost goes above the top of the canvas, move it back to the bottom.
-      if (this.ghostY < -this.ghostSize) {
-        this.ghostY = height + this.ghostSize;
+      if (this.ghostY < -this.ghostSize || this.ghostY >= height - this.ghostSize) {
+        this.alive = false;
+      }
+      if (this.ghostX < -this.ghostSize || this.ghostX >= width - this.ghostSize) {
+        this.alive = false;
       }
       
       // Add a point to the beginning of the array.

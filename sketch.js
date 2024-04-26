@@ -14,7 +14,7 @@ let minusImg;
 let minusPlanetImg;
 let totalPlanetImage = 7;
 
-let spell;
+let currentSpells = [];
 
 // sounds
 let bgSound;
@@ -175,7 +175,11 @@ function setup() {
 
     bounceSound.setVolume(0.3);
 
-    spell = new Spell("", 45, 500, 500);
+    spell = new Spell("", -80, 700, 500);
+    currentSpells.push(spell);
+
+    spell = new Spell("", 80, 400, 500);
+    currentSpells.push(spell);
   }
 
 function startNewLevel() {
@@ -261,7 +265,8 @@ function draw() {
       run = false;
     }
 
-    spell.draw();
+    currentSpells = currentSpells.filter(sp => sp.alive);
+    currentSpells.forEach(sp => sp.draw());
 
     if(run){
       loop();
