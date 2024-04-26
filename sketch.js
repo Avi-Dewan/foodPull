@@ -33,6 +33,7 @@ let clickSound;
 let collectSound;
 let castSpells = []; // 0-> fire, 1 -> water, 2 -> poison
 let catchSpells = [];
+let damageSound;
 
 // characters
 let foods = [];
@@ -164,6 +165,8 @@ function preload() {
   failedSound = loadSound("./assets/sounds/failed.mp3");
   clickSound = loadSound("./assets/sounds/click.mp3");
   collectSound = loadSound("./assets/sounds/collect_food.mp3");
+
+  damageSound = loadSound("./assets/sounds/damage.mp3");
 
   potImg = loadImage("./assets/pot.png");
   potFireImg = loadImage("./assets/pot-fire.png");

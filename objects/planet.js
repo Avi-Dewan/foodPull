@@ -137,7 +137,15 @@ class Planet {
       return;
     }
 
-    let allGrabbed = foods.filter((food) => !food.isGrabbed).length === 0;
+    let allGrabbed = true;
+    Object.keys(foodsCollected).forEach((key) => {
+      if (foodsCollected[key][0] !== foodsCollected[key][1]) allGrabbed = false;
+    });
+    Object.keys(spellsCollected).forEach((key) => {
+      if (spellsCollected[key][0] !== spellsCollected[key][1])
+        allGrabbed = false;
+    });
+
     if (this.type === "earth" && allGrabbed) {
       winSound.setVolume(1, 0);
       winSound.play();
@@ -150,7 +158,7 @@ class Planet {
     } else if (this.type === "earth") {
       astronaut.vel = createVector(0, 0);
       if (astronaut.poisonous === 0) {
-        notiText = "Zorgons has missed some foods!!";
+        notiText = "Zorgons has missed some someting";
       }
       astronaut.poisonous += 5;
       failedSound.setVolume(1, 0);
