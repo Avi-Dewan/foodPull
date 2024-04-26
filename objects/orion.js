@@ -63,7 +63,7 @@ class Orion {
         console.log("first");
         currentSpells.push(
           new Spell(
-            "fire",
+            this.positions[posIdx].type,
             90- this.positions[posIdx].rotation,
             this.positions[posIdx].pos.x + x * cos(theta) - y * sin(theta),
             this.positions[posIdx].pos.y + x * sin(theta) + y * cos(theta)

@@ -62,7 +62,14 @@ class Spell {
     }
 
     strokeWeight(4);
-    stroke("#FF421D");
+    if(this.type === 'fire'){
+      stroke("#FF421D");
+    } else if(this.type === 'water'){
+      stroke("#3E7FFF");
+    } else if(this.type === 'poison'){
+      stroke("#8327C5");
+    }
+
     // Loop over the tail and draw the points.
     for (var index = 0; index < this.tail.length; index++) {
       const tailPoint = this.tail[index];
@@ -72,7 +79,13 @@ class Spell {
         (this.ghostSize * (this.tail.length - index)) / this.tail.length;
       const pointAlpha = (255 * (this.tail.length - index)) / this.tail.length;
 
-      fill(255, 169, 0, pointAlpha);
+      if(this.type === 'fire'){
+        fill(255, 169, 0, pointAlpha);
+      } else if(this.type === 'water'){
+        fill(101, 185, 255, pointAlpha);
+      } else if(this.type === 'poison'){
+        fill(131, 92, 197, pointAlpha);
+      }
       ellipse(tailPoint.x, tailPoint.y, pointSize);
 
       if (
