@@ -15,6 +15,8 @@ let minusImg;
 let minusPlanetImg;
 let totalPlanetImage = 7;
 
+let currentSpells = [];
+
 // sounds
 let bgSound;
 let astronautBounceSound;
@@ -181,6 +183,11 @@ function setup() {
 
     bounceSound.setVolume(0.3);
 
+    spell = new Spell("", -80, 700, 500);
+    currentSpells.push(spell);
+
+    spell = new Spell("", 80, 400, 500);
+    currentSpells.push(spell);
   }
 
 function startNewLevel() {
@@ -268,6 +275,9 @@ function draw() {
       astronaut.poisonous = 255;
       run = false;
     }
+
+    currentSpells = currentSpells.filter(sp => sp.alive);
+    currentSpells.forEach(sp => sp.draw(helper));
 
     if(run){
       loop();
