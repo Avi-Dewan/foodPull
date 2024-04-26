@@ -14,6 +14,7 @@ let plusPlanetImg;
 let minusImg;
 let minusPlanetImg;
 let totalPlanetImage = 7;
+let spellImages = {};
 
 let currentSpells = [];
 
@@ -28,7 +29,6 @@ let clickSound;
 let collectSound;
 let castSpells = []; // 0-> fire, 1 -> water, 2 -> poison
 let catchSpells = [];
-
 
 // characters
 let foods = [];
@@ -49,6 +49,8 @@ let newMenu = true;
 let pauseMenu = false;
 let level;
 let life = 200;
+let foodsCollected = {};
+let spellsCollected = {};
 
 // buttons
 const pauseBtn = document.getElementById("pauseBtn");
@@ -143,6 +145,9 @@ function preload() {
   foodImgs["potato"] = loadImage("./assets/potato.png");
   foodImgs["turkey"] = loadImage("./assets/turkey.png");
 
+  spellImages["fire"] = loadImage("./assets/fire.png");
+  spellImages["water"] = loadImage("./assets/water-drop.png");
+
   plusImg = loadImage("./assets/plus.png");
   minusImg = loadImage("./assets/minus.png");
   plusPlanetImg = loadImage("./assets/plusPlanet.png");
@@ -229,9 +234,21 @@ function setup() {
 }
 
 function startNewLevel() {
+  frameCount = 0;
   life = 200;
   planets = [];
   foods = [];
+  currentSpells = [];
+
+  Object.keys(level.basketCollectables).forEach((key) => {
+    foodsCollected[key] = [0, level.basketCollectables[key]];
+  });
+
+  console.log(foodsCollected);
+
+  Object.keys(level.helperCollectables).forEach((key) => {
+    spellsCollected[key] = [0, level.helperCollectables[key]];
+  });
 
   instructionBox.innerHTML = level.instruction;
 
@@ -303,6 +320,30 @@ function draw() {
   background(10);
   drawbg();
 
+  Object.keys(foodsCollected).forEach((key, i) => {
+    image(foodImgs[key], 20, 10 + 30 * i, 20, 20);
+    textSize(16);
+    fill(255);
+    noStroke();
+    text(
+      `${foodsCollected[key][0]} / ${foodsCollected[key][1]}`,
+      50,
+      30 + 30 * i
+    );
+  });
+
+  Object.keys(spellsCollected).forEach((key, i) => {
+    image(spellImages[key], 1510, 10 + 30 * i, 20, 20);
+    textSize(16);
+    fill(255);
+    noStroke();
+    text(
+      `${spellsCollected[key][0]} / ${spellsCollected[key][1]}`,
+      1550,
+      30 + 30 * i
+    );
+  });
+
   if (run)
     bgSound.setVolume(
       max(0.2, p5.Vector.mag(astronaut.vel) / astronaut.maxVel),
@@ -353,7 +394,7 @@ function draw() {
   }
 
   currentSpells = currentSpells.filter((sp) => sp.alive);
-  currentSpells.forEach((sp) => sp.draw(helper));
+  if (run) currentSpells.forEach((sp) => sp.draw(helper));
 
   if (run) {
     loop();

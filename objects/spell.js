@@ -1,8 +1,8 @@
 class Spell {
   constructor(type, angle, x, y, castSpells, catchSpells) {
-    this.tailLength = 15;
+    this.tailLength = 12;
     this.ghostSize = 20;
-    this.wiggliness = 8;
+    this.wiggliness = 6;
     this.floatiness = 7;
 
     this.ghostX = x;
