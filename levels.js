@@ -24,6 +24,60 @@ const getCurrentLevel = (index) => {
           height: 70,
         },
       ],
+      orionPos: [],
+      orionAppearance: [],
+      cycleTime: 0,
+      basketCollectables: {
+        carrot: 1, 
+      },
+      helperCollectables: {
+
+      },
+      instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods as per recipe on top left corner.</p>`,
+    },
+    {
+      id: 2,
+      astronautPos: createVector(100, 500),
+      planets: [],
+      earthPos: createVector(1000, 400),
+      helper: { pos: createVector(450, 500), r: 80 },
+      foods: [
+        {
+          pos: createVector(650, 300),
+          type: "eggs",
+          width: 50,
+          height: 70,
+        },
+      ],
+      orionPos: [
+        { pos: createVector(20, 50), rotation: 0, type: "fire" },
+        { pos: createVector(1200, 150), rotation: 140, type: "water"},
+      ],
+      orionAppearance: [100, 350, 450],
+      cycleTime: 450,
+      basketCollectables: {
+        eggs: 1
+      },
+      helperCollectables: {
+        fire: 1,
+        water: 1
+      },
+      instruction: `<p class="flex font-bold text-lg" style="${style}"> Cannot cook without fire & water -> Collect spells.. But too much is harmful ! (Hint: look at top right corner) </p>`,
+    },
+    {
+      id: 3,
+      astronautPos: createVector(100, 500),
+      planets: [],
+      earthPos: createVector(1000, 400),
+      helper: { pos: createVector(450, 500), r: 80 },
+      foods: [
+        {
+          pos: createVector(650, 300),
+          type: "turkey",
+          width: 50,
+          height: 70,
+        },
+      ],
       orionPos: [
         { pos: createVector(20, 50), rotation: 0, type: "fire" },
         { pos: createVector(1200, 150), rotation: 140, type: "poison"},
@@ -33,15 +87,16 @@ const getCurrentLevel = (index) => {
       orionAppearance: [100, 350, 600, 900, 1000],
       cycleTime: 1000,
       basketCollectables: {
-        carrot: 1
+        turkey: 1
       },
       helperCollectables: {
-        fire: 1
+        fire: 2,
+        water: 1,
       },
-      instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods.</p>`,
+      instruction: `<p class="flex font-bold text-lg" style="${style}"> Beware of poison spells! Overflow of spells are poisonous as well! </p>`,
     },
     {
-      id: 2,
+      id: 4,
       astronautPos: createVector(100, 500),
       planets: [],
       earthPos: createVector(1000, 400),
@@ -86,7 +141,7 @@ const getCurrentLevel = (index) => {
       instruction: `<p class="flex font-bold text-lg" style="${style}">ALL Foods! Collect all the foods..</p>`,
     },
     {
-      id: 3,
+      id: 5,
       astronautPos: createVector(100, 100),
       planets: [
         { pos: createVector(300, 400), type: "poisonous", r: 50 },
@@ -128,7 +183,7 @@ const getCurrentLevel = (index) => {
       instruction: `<p class="${className}" style="${style}">Avoid the poisonous planet. <span class-"inline"><img src="./assets/poison.png" width="30px"/></span></p>`,
     },
     {
-      id: 4,
+      id: 6,
       astronautPos: createVector(100, 150),
       planets: [
         { pos: createVector(300, 350), type: "poisonous", r: 80 },
@@ -187,7 +242,7 @@ const getCurrentLevel = (index) => {
       instruction: `<p class="${className}" style="${style}">Best of luck!</p>`,
     },
     {
-      id: 5,
+      id: 7,
       astronautPos: createVector(1000, 100),
       planets: [
         { pos: createVector(400, 400), type: "", r: 120 },
@@ -236,7 +291,7 @@ const getCurrentLevel = (index) => {
       instruction: `<p class="${className}" style="${style}">Touch the 'plus' planet to increase your gavitational pull. <span class-"inline"><img src="./assets/plus.png" width="20px"/></span></p>`,
     },
     {
-      id: 6,
+      id: 8,
       astronautPos: createVector(100, 150),
       planets: [
         { pos: createVector(200, 150), type: "", r: 20 },
@@ -288,7 +343,7 @@ const getCurrentLevel = (index) => {
       instruction: `<p class="${className}" style="${style}">Best of luck</p>`,
     },
     {
-      id: 7,
+      id: 9,
       astronautPos: createVector(100, 250),
       planets: [
         { pos: createVector(200, 150), type: "", r: 60 },
@@ -343,7 +398,7 @@ const getCurrentLevel = (index) => {
       instruction: `<p class="${className}" style="${style}">Remember, the bigger is not always the better.</p>`,
     },
     {
-      id: 8,
+      id: 10,
       astronautPos: createVector(20, 230),
       planets: [
         { pos: createVector(50, 170), type: "poisonous", r: 50 },
