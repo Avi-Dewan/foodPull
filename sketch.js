@@ -266,7 +266,7 @@ function draw() {
     }
 
     currentSpells = currentSpells.filter(sp => sp.alive);
-    currentSpells.forEach(sp => sp.draw());
+    currentSpells.forEach(sp => sp.draw(helper));
 
     if(run){
       loop();

@@ -16,11 +16,21 @@ class Spell{
 
     this.alive = true;
   }
+
+  detectCollision(helper, cx, cy, rad){
+    let x = helper.pos.x;
+    let y = helper.pos.y;
+    let r = helper.r / 2;
+
+    let distance = dist(cx, cy, x, y);
+    return distance < r + rad; 
+  }
   
-  draw() {    
+  draw(helper) {    
+
     // The cos() function gives us a value that bounces between -1 and 1.
     // We can use that to create animations!
-    if(this.doDraw == 2){
+    if(this.doDraw == 4){
       this.doDraw = 0;
 
       this.ghostY += cos(frameCount / 10) * this.wiggliness + this.floatiness * cos(this.angle);
@@ -45,9 +55,6 @@ class Spell{
       this.doDraw = this.doDraw + 1;
     }
 
-    push();
-    // rotate(3.14/4);
-  
     strokeWeight(4);
     stroke("#FF421D");
     // Loop over the tail and draw the points.
@@ -60,9 +67,12 @@ class Spell{
   
       fill(255, 169, 0, pointAlpha);
       ellipse(tailPoint.x, tailPoint.y, pointSize);
-    }
 
-    pop();
+      if(this.detectCollision(helper, tailPoint.x, tailPoint.y, pointSize / 2)){
+        this.alive = false;
+        console.log("collision detected");
+      }
+    }
   
     // Draw the ghost's face.
     // fill(255,255,255);
