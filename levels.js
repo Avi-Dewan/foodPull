@@ -25,9 +25,9 @@ const getCurrentLevel = (index) => {
         },
       ],
       orionPos: [
-        { pos: createVector(20, 50), rotation: 60 },
-        { pos: createVector(20, 500), rotation: 0 },
-        { pos: createVector(600, 50), rotation: 60 },
+        { pos: createVector(20, 50), rotation: 0 },
+        { pos: createVector(20, 500), rotation: 10 },
+        { pos: createVector(600, 50), rotation: 30 },
       ],
       orionAppearance: [100, 400, 800, 1200],
       cycleTime: 1200,

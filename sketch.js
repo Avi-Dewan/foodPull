@@ -213,11 +213,11 @@ function setup() {
 
   bounceSound.setVolume(0.3);
 
-  spell = new Spell("", -80, 700, 500);
-  currentSpells.push(spell);
+  // spell = new Spell("", -80, 700, 500);
+  // currentSpells.push(spell);
 
-  spell = new Spell("", 80, 400, 500);
-  currentSpells.push(spell);
+  // spell = new Spell("", 80, 400, 500);
+  // currentSpells.push(spell);
 }
 
 function startNewLevel() {
@@ -285,7 +285,7 @@ function startNewLevel() {
     orionImg,
     level.orionPos,
     level.orionAppearance,
-    level.cycleTime
+    level.cycleTime,
   );
 }
 
@@ -311,7 +311,7 @@ function draw() {
   });
 
   if (astronaut.poisonous === 0) {
-    orion.draw();
+    orion.draw(currentSpells);
     image(lifeImg, width / 2 - 115, 10, 24, 24);
     strokeWeight(6);
     stroke(200);

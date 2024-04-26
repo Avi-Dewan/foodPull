@@ -35,7 +35,7 @@ class Spell {
       this.ghostY +=
         cos(frameCount / 10) * this.wiggliness +
         this.floatiness * cos(this.angle);
-      this.ghostX -= this.floatiness * sin(this.angle);
+      this.ghostX += this.floatiness * sin(this.angle);
 
       // If the ghost goes above the top of the canvas, move it back to the bottom.
       if (

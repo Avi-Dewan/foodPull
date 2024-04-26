@@ -18,7 +18,7 @@ class Orion {
     this.cycleTime = cycleTime;
   }
 
-  draw() {
+  draw(currentSpells) {
     posIdx = -1;
     for (let i = 0; i < this.orionAppearance?.length - 1; i++) {
       if (
@@ -32,7 +32,6 @@ class Orion {
     push();
 
     if (posIdx >= 0) {
-
       translate(this.positions[posIdx].pos.x, this.positions[posIdx].pos.y);
       rotate((this.positions[posIdx].rotation * PI) / 180);
 
@@ -59,6 +58,19 @@ class Orion {
       let x = this.width;
       let y = 45;
       let theta = (this.positions[posIdx].rotation * PI) / 180;
+
+      if ((frameCount % this.cycleTime) - this.orionAppearance[posIdx] === 50) {
+        console.log("first");
+        currentSpells.push(
+          new Spell(
+            "fire",
+            90- this.positions[posIdx].rotation,
+            this.positions[posIdx].pos.x + x * cos(theta) - y * sin(theta),
+            this.positions[posIdx].pos.y + x * sin(theta) + y * cos(theta)
+          )
+        );
+      }
+
       //   if (fade < 255) fade += 3;
     }
 
