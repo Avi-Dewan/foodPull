@@ -58,7 +58,51 @@ class Spell {
     return distance < r + rad;
   }
 
-  draw(helper) {
+  detectCollisionWithBasket(astronaut, cx, cy, rad){
+    // TODO: better collision detect: https://editor.p5js.org/mrbombmusic/sketches/l95s9fZJY
+    // return dist(this.center().x, this.center().y, planet.pos.x, planet.pos.y) < planet.r;
+    let rx = astronaut.pos.x;
+    let ry = astronaut.pos.y;
+    let rw = astronaut.width;
+    let rh = astronaut.height;
+
+    let testX = cx;
+    let testY = cy;
+
+    if (cx < rx) testX = rx; // test left edge
+    else if (cx > rx + rw) testX = rx + rw; // right edge
+    if (cy < ry) testY = ry; // top edge
+    else if (cy > ry + rh) testY = ry + rh; // bottom edge
+
+    let d = dist(cx, cy, testX, testY);
+
+    if (d <= rad / 2.0) {
+      return true;
+    }
+    return false;
+  }
+
+  draw(helper, astronaut) {
+    if (
+      this.detectCollision(helper, this.ghostX, this.ghostY, this.ghostSize / 2)
+    ) {
+      this.alive = false;
+      console.log("collision detected");
+
+      if (this.type === "fire") {
+        catchSpells?.at(0).setVolume(1, 0);
+        catchSpells?.at(0).play();
+      } else if (this.type === "water") {
+        catchSpells?.at(1).setVolume(1, 0);
+        catchSpells?.at(1).play();
+      }
+
+      return ;
+    }
+
+    if(this.detectCollisionWithBasket(astronaut, this.ghostX, this.ghostY, this.ghostSize / 2)){
+      this.alive = false;
+    }
     push();
 
     this.ghostX = Math.pow(1-this.t, 3) * this.xs[0]
@@ -80,7 +124,6 @@ class Spell {
 
     // Add a point to the beginning of the array.
     this.tail.unshift({ x: this.ghostX, y: this.ghostY });
-    // If the array is too big, remove the last point.
     if (this.tail.length > this.tailLength) {
       this.tail.pop();
     }
@@ -103,22 +146,7 @@ class Spell {
       strokeWeight(mass);
       fill(colors[this.type]['fill'][0], colors[this.type]['fill'][1], colors[this.type]['fill'][2], pointAlpha);
       
-      ellipse(tailPoint.x, tailPoint.y, pointSize * colors[this.type]['falloff']);
-
-      if (
-        this.detectCollision(helper, tailPoint.x, tailPoint.y, pointSize / 2)
-      ) {
-        this.alive = false;
-        console.log("collision detected");
-
-        if (this.type === "fire") {
-          catchSpells?.at(0).setVolume(1, 0);
-          catchSpells?.at(0).play();
-        } else if (this.type === "water") {
-          catchSpells?.at(1).setVolume(1, 0);
-          catchSpells?.at(1).play();
-        }
-      }
+      ellipse(tailPoint.x, tailPoint.y, pointSize * colors[this.type]['falloff']);  
     }
 
     pop();

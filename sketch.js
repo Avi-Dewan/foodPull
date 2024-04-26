@@ -1,5 +1,5 @@
-const CANVAS_WIDTH = 1400;
-const CANVAS_HEIGHT = 700;
+const CANVAS_WIDTH = 1600;
+const CANVAS_HEIGHT = 800;
 
 // images
 let astronautImg;
@@ -411,7 +411,7 @@ function draw() {
   }
 
   currentSpells = currentSpells.filter((sp) => sp.alive);
-  if (run) currentSpells.forEach((sp) => sp.draw(helper));
+  if (run) currentSpells.forEach((sp) => sp.draw(helper, astronaut));
 
   if (run) {
     loop();
