@@ -27,17 +27,10 @@ const getCurrentLevel = (index) => {
       orionPos: [
         { pos: createVector(20, 50), rotation: 0, type: "fire" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison" },
+        { pos: createVector(600, 50), rotation: 30, type: "poison"},
       ],
       orionAppearance: [100, 400, 800, 1200],
       cycleTime: 1200,
-      basketCollectables: {
-        carrot: 1,
-        eggs: 2,
-      },
-      helperCollectables: {
-        fire: 1,
-      },
       instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods.</p>`,
     },
     {
