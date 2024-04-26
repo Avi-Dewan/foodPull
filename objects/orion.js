@@ -65,11 +65,10 @@ class Orion {
       let theta = (this.positions[posIdx].rotation * PI) / 180;
 
       if ((frameCount % this.cycleTime) - this.orionAppearance[posIdx] === 50) {
-        console.log("first");
         currentSpells.push(
           new Spell(
             this.positions[posIdx].type,
-            90 - this.positions[posIdx].rotation,
+            this.positions[posIdx].rotation,
             this.positions[posIdx].pos.x + x * cos(theta) - y * sin(theta),
             this.positions[posIdx].pos.y + x * sin(theta) + y * cos(theta),
             this.castSpells,
@@ -78,7 +77,6 @@ class Orion {
         );
       }
 
-      //   if (fade < 255) fade += 3;
     }
 
     // ellipse(

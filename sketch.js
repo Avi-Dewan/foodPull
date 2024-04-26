@@ -1,5 +1,5 @@
-const CANVAS_WIDTH = 1600;
-const CANVAS_HEIGHT = 800;
+const CANVAS_WIDTH = 1400;
+const CANVAS_HEIGHT = 700;
 
 // images
 let astronautImg;
