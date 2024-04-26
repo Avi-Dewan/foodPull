@@ -175,10 +175,42 @@ class Spell {
 
     pop();
 
+    // let s = new Star(100, 100, 10, 20, '#FF0000')
+    // s.draw();
+
     // Draw the ghost's face.
     // fill(255,255,255);
     // ellipse(this.ghostX - this.ghostSize * .2, this.ghostY - this.ghostSize * .1, this.ghostSize * .2);
     // ellipse(this.ghostX + this.ghostSize * .2, this.ghostY - this.ghostSize * .1, this.ghostSize * .2);
     // ellipse(this.ghostX, this.ghostY + this.ghostSize * .2, this.ghostSize * .2);
+  }
+
+  
+}
+
+class Star{
+  constructor(x, y, radius1, radius2, color){
+    this.x = x;
+    this.y = y;
+    this.radius1 = radius1;
+    this.radius2 = radius2;
+    this.color = color;
+  }
+
+  draw(npoints=5) {
+    let angle = TWO_PI / npoints;
+    let halfAngle = angle / 2.0;
+
+    fill(this.color);
+    beginShape();
+    for (let a = 0; a < TWO_PI; a += angle) {
+      let sx = this.x + cos(a) * this.radius2;
+      let sy = this.y + sin(a) * this.radius2;
+      vertex(sx, sy);
+      sx = this.x + cos(a + halfAngle) * this.radius1;
+      sy = this.y + sin(a + halfAngle) * this.radius1;
+      vertex(sx, sy);
+    }
+    endShape(CLOSE);
   }
 }
