@@ -89,9 +89,11 @@ class Spell {
         if (spellsCollected[this.type][0] < spellsCollected[this.type][1]) {
           spellsCollected[this.type][0]++;
         } else {
+          damageSound.setVolume(1, 0);
           life -= 40;
         }
       } else {
+        damageSound.setVolume(1, 0);
         life -= 40;
       }
 
