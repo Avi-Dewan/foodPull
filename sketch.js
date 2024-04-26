@@ -3,6 +3,7 @@ const CANVAS_HEIGHT = 700;
 
 // images
 let astronautImg;
+let orionImg;
 let earthImg;
 let lifeImg;
 let poisonImg;
@@ -28,6 +29,7 @@ let collectSound;
 let foods = []
 let planets = [];
 let astronaut;
+let orion;
 let helper;
 let earth;
 let planetImg = [];
@@ -126,6 +128,8 @@ function preload() {
   poisonImg = loadImage('./assets/poison.png');
   helperImg = loadImage('./assets/ufo.png');
 
+  orionImg = loadImage('./assets/orion.png');
+
   foodImgs['broccoli'] = loadImage('./assets/broccoli.png');
   foodImgs['carrot'] = loadImage('./assets/carrot.png');
   foodImgs['eggs'] = loadImage('./assets/eggs.png');
@@ -165,6 +169,10 @@ function setup() {
 
     console.log(foodImgs)
     astronaut = new Astronaut(astronautImg, createVector(150, 450), 0.0003, foodImgs);
+
+    orion = new Orion(orionImg,[{pos: createVector(20, 50), rotation: 0},
+    {pos: createVector(20, 500), rotation: 0},
+    {pos: createVector(600, 50), rotation: 0}]);
 
     // noLoop();
 
@@ -206,11 +214,14 @@ function startNewLevel() {
   console.log(foods)
 
   astronaut = new Astronaut(astronautImg, level.astronautPos, 0.0003, foodImgs);
+  orion = new Orion(orionImg, level.orionPos);
 }
   
 function draw() {
     background(10);
     drawbg();
+    
+    orion.draw(2);
 
     if (run) 
       bgSound.setVolume(max(0.2, p5.Vector.mag(astronaut.vel)/astronaut.maxVel), 0.2)

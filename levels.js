@@ -22,6 +22,11 @@ const getCurrentLevel = (index) => {
       width: 50,
       height: 70
     }],
+    orionPos: [
+      {pos: createVector(20, 50), rotation: 0},
+      {pos: createVector(20, 500), rotation: 0},
+      {pos: createVector(600, 50), rotation: 0}
+    ],
     instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods.</p>`
   },
   { 
@@ -49,6 +54,11 @@ const getCurrentLevel = (index) => {
       height: 70
     }
     ],
+    orionPos: [
+      {pos: createVector(20, 50), rotation: 0},
+      {pos: createVector(20, 500), rotation: 0},
+      {pos: createVector(600, 50), rotation: 0}
+    ],
     instruction: `<p class="flex font-bold text-lg" style="${style}">ALL Foods! Collect all the foods..</p>`
   },
   { 
@@ -73,6 +83,11 @@ const getCurrentLevel = (index) => {
     height: 40
   
   }],
+  orionPos: [
+    {pos: createVector(20, 50), rotation: 0},
+    {pos: createVector(20, 500), rotation: 0},
+    {pos: createVector(600, 50), rotation: 0}
+  ],
     instruction: `<p class="${className}" style="${style}">Avoid the poisonous planet. <span class-"inline"><img src="./assets/poison.png" width="30px"/></span></p>`
   },
   { 
@@ -106,6 +121,11 @@ const getCurrentLevel = (index) => {
     }
 
   ],
+  orionPos: [
+    {pos: createVector(20, 50), rotation: 0},
+    {pos: createVector(20, 500), rotation: 0},
+    {pos: createVector(600, 50), rotation: 0}
+  ],
     instruction: `<p class="${className}" style="${style}">Best of luck!</p>`
   },
   {
@@ -136,6 +156,11 @@ const getCurrentLevel = (index) => {
       width: 50,
       height: 60
     }
+  ],
+  orionPos: [
+    {pos: createVector(20, 50), rotation: 0},
+    {pos: createVector(20, 500), rotation: 0},
+    {pos: createVector(600, 50), rotation: 0}
   ],
     instruction: `<p class="${className}" style="${style}">Touch the 'plus' planet to increase your gavitational pull. <span class-"inline"><img src="./assets/plus.png" width="20px"/></span></p>`
   },
@@ -170,6 +195,11 @@ const getCurrentLevel = (index) => {
       width: 45,
       height: 55
     }],
+    orionPos: [
+      {pos: createVector(20, 50), rotation: 0},
+      {pos: createVector(20, 500), rotation: 0},
+      {pos: createVector(600, 50), rotation: 0}
+    ],
     instruction: `<p class="${className}" style="${style}">Best of luck</p>`
   },
   {
@@ -207,6 +237,11 @@ const getCurrentLevel = (index) => {
       width: 50,
       height: 60
     }],
+    orionPos: [
+      {pos: createVector(20, 50), rotation: 0},
+      {pos: createVector(20, 500), rotation: 0},
+      {pos: createVector(600, 50), rotation: 0}
+    ],
     instruction: `<p class="${className}" style="${style}">Remember, the bigger is not always the better.</p>`
   },
   {
@@ -249,6 +284,11 @@ const getCurrentLevel = (index) => {
       width: 40,
       height: 50
     }],
+    orionPos: [
+      {pos: createVector(20, 50), rotation: 0},
+      {pos: createVector(20, 500), rotation: 0},
+      {pos: createVector(600, 50), rotation: 0}
+    ],
     instruction: `<p class="${className}" style="${style}">Touch the 'minus' planet to decrease your size. <span class-"inline"><img src="./assets/minus.png" width="20px"/></span></p>`
   },
   
