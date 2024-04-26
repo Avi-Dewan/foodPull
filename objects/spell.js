@@ -72,9 +72,6 @@ class Spell {
     + (1-this.t) * this.t*this.t * this.ys[2]
     + Math.pow(this.t, 3) * this.ys[3];
 
-
-    console.log(this.ghostX, this.ghostY);
-
     this.t += .005;
 
     if(this.t > 1){
