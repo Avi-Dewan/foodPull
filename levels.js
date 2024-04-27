@@ -95,7 +95,7 @@ const getCurrentLevel = (index) => {
         fire: 2,
         water: 1,
       },
-      instruction: `<p class="flex font-bold text-lg" style="${style}"> Beware of poison spells! Overflow of spells are poisonous as well! </p>`,
+      instruction: `<p class="flex font-bold text-lg" style="${style}"> Beware of poison spells(Green spells)! Overflow of spells are poisonous as well! </p>`,
     },
     {
       id: 4,
@@ -138,7 +138,8 @@ const getCurrentLevel = (index) => {
         eggs: 1,
       },
       helperCollectables: {
-        fire: 1
+        fire: 1,
+        water: 1,
       },
       instruction: `<p class="flex font-bold text-lg" style="${style}">ALL Foods! Collect all the foods..</p>`,
     },
@@ -180,7 +181,8 @@ const getCurrentLevel = (index) => {
         eggs: 1,
       },
       helperCollectables: {
-        fire: 1
+        fire: 1,
+        water: 1,
       },
       instruction: `<p class="${className}" style="${style}">Avoid the poisonous planet. <span class-"inline"><img src="./assets/poison.png" width="30px"/></span></p>`,
     },
