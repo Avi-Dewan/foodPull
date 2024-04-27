@@ -148,9 +148,9 @@ const getCurrentLevel = (index) => {
       astronautPos: createVector(100, 100),
       planets: [
         { pos: createVector(300, 400), type: "poisonous", r: 50 },
-        { pos: createVector(550, 200), type: "", r: 60 },
+        { pos: createVector(550, 200), type: "", r: 80 },
       ],
-      earthPos: createVector(900, 400),
+      earthPos: createVector(1200, 505),
       helper: { pos: createVector(300, 450), r: 80 },
       foods: [
         {
@@ -191,7 +191,7 @@ const getCurrentLevel = (index) => {
       astronautPos: createVector(100, 150),
       planets: [
         { pos: createVector(300, 350), type: "poisonous", r: 80 },
-        { pos: createVector(600, 450), type: "", r: 80 },
+        { pos: createVector(600, 550), type: "", r: 80 },
         { pos: createVector(450, 170), type: "", r: 80 },
         { pos: createVector(950, 170), type: "", r: 80 },
         { pos: createVector(1000, 500), type: "poisonous", r: 60 },
