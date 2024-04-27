@@ -195,7 +195,7 @@ function setup() {
     "helper"
   );
   earth = new Planet(
-    createVector(800, 400),
+    createVector(1300, 400),
     createVector(0, 0),
     80,
     earthImg,

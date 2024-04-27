@@ -24,13 +24,21 @@ class Planet {
     this.handleCollision(astronaut, foods);
     // this.update();
     if (this.img) {
-      if (this.type === "earth" || this.type === "poisonous") {
+      if (this.type === "earth") {
         image(
           spellsCollected["fire"]?.at(0) > 0 ? potFireImg : potImg,
           this.pos.x - this.r / 2 - 10,
           this.pos.y - this.r / 2 - 10,
           this.r + 20,
           this.r + 20
+        );
+      } else if (this.type === "poisonous") {
+        image(
+          this.img,
+          this.pos.x - this.r / 2,
+          this.pos.y - this.r / 2,
+          this.r,
+          this.r
         );
       } else if (this.type === "helper") {
         let x = this.pos.x;
