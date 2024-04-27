@@ -3,19 +3,19 @@ const colors = {
     fill: [131, 92, 197],
     shadow: "#ff6e00",
     falloff: 0.6,
-    shades: ["#ffff00", "#ee6600", "#eeee00", '#aabb00']
+    shades: ["#ffff00", "#ee6600", "#eeee00", "#aabb00"],
   },
   water: {
     fill: [0, 0, 255],
     shadow: "#4474FC",
     falloff: 0.6,
-    shades: ["#2274FF", "#4474CC", "#2474AC"]
+    shades: ["#2274FF", "#4474CC", "#2474AC"],
   },
   poison: {
     fill: [100, 10, 255],
     shadow: "#00ff00",
     falloff: .8,
-    shades: ["#00ddaa", "#22ee00", "#11ff00"]
+    shades: ["#00ddaa", "#22ee00", "#11ff00"],
   },
 };
 
@@ -45,14 +45,16 @@ class Spell {
     } else if (type === "water") {
       castSpells?.at(1).setVolume(1, 0);
       castSpells?.at(1).play();
+    } else if (type === "poison") {
+      castSpells?.at(2).setVolume(1, 0);
+      castSpells?.at(2).play();
     }
 
-    
-    this.precomputed = []
-    
+    this.precomputed = [];
+
     let weights = Array.from({ length: 5 }, () => Math.random() * 20);
     let incrX = 0;
-    while(incrX < width){
+    while (incrX < width) {
       let incrY = 0;
       for (let i = 0; i < 5; i++) {
         incrY += weights[i] * sin(incrX / 100);
@@ -60,7 +62,7 @@ class Spell {
 
       this.precomputed.push({
         x: x + incrX * cos(this.angle) - incrY * sin(this.angle),
-        y: y + incrX * sin(this.angle) + incrY * cos(this.angle)
+        y: y + incrX * sin(this.angle) + incrY * cos(this.angle),
       });
 
       incrX += Math.random() * 2 + 1;
@@ -123,6 +125,9 @@ class Spell {
       } else if (this.type === "water") {
         catchSpells?.at(1).setVolume(1, 0);
         catchSpells?.at(1).play();
+      } else if (this.type === "poison") {
+        catchSpells?.at(2).setVolume(1, 0);
+        catchSpells?.at(2).play();
       }
 
       return;
@@ -150,7 +155,7 @@ class Spell {
     this.ghostY = this.precomputed[this.showindex].y;
     this.showindex++;
 
-    if(this.showindex >= this.precomputed.length) {
+    if (this.showindex >= this.precomputed.length) {
       this.alive = false;
     }
 
@@ -163,27 +168,50 @@ class Spell {
     // Add a point to the beginning of the array.
     this.tail.unshift({ x: this.ghostX, y: this.ghostY });
     if (this.tail.length > this.tailLength) {
-      let pos = this.tail.pop()
+      let pos = this.tail.pop();
 
-      if(this.stars.length == 0 || dist(this.stars[0].x, this.stars[0].y, pos.x, pos.y) > 50){
-        let scale = Math.random() * 1.5 + .2;
-        let colorIdx = Math.random() * colors[this.type]['shades'].length;
+      if (
+        this.stars.length == 0 ||
+        dist(this.stars[0].x, this.stars[0].y, pos.x, pos.y) > 50
+      ) {
+        let scale = Math.random() * 1.5 + 0.2;
+        let colorIdx = Math.random() * colors[this.type]["shades"].length;
         colorIdx = Math.floor(colorIdx);
-        this.stars.unshift(new Star(pos.x + Math.random() * 20 - 10, pos.y + Math.random() * 20 - 5, scale, colors[this.type]['shades'][colorIdx]));
+        this.stars.unshift(
+          new Star(
+            pos.x + Math.random() * 20 - 10,
+            pos.y + Math.random() * 20 - 5,
+            scale,
+            colors[this.type]["shades"][colorIdx]
+          )
+        );
 
-
-        scale = Math.random() * .7 + .1;
-        colorIdx = Math.random() * colors[this.type]['shades'].length;
+        scale = Math.random() * 0.7 + 0.1;
+        colorIdx = Math.random() * colors[this.type]["shades"].length;
         colorIdx = Math.floor(colorIdx);
-        this.stars.unshift(new Star(pos.x + Math.random() * 30, pos.y + Math.random() * 30 - 15, scale, colors[this.type]['shades'][colorIdx]));
+        this.stars.unshift(
+          new Star(
+            pos.x + Math.random() * 30,
+            pos.y + Math.random() * 30 - 15,
+            scale,
+            colors[this.type]["shades"][colorIdx]
+          )
+        );
 
-        scale = Math.random() * .7 + .1;
-        colorIdx = Math.random() * colors[this.type]['shades'].length;
+        scale = Math.random() * 0.7 + 0.1;
+        colorIdx = Math.random() * colors[this.type]["shades"].length;
         colorIdx = Math.floor(colorIdx);
-        this.stars.unshift(new Star(pos.x + Math.random() * 30 , pos.y + Math.random() * 30 - 15, scale, colors[this.type]['shades'][colorIdx]));
+        this.stars.unshift(
+          new Star(
+            pos.x + Math.random() * 30,
+            pos.y + Math.random() * 30 - 15,
+            scale,
+            colors[this.type]["shades"][colorIdx]
+          )
+        );
       }
 
-      if(this.stars.length >= 15) this.stars.pop();
+      if (this.stars.length >= 15) this.stars.pop();
     }
 
     drawingContext.shadowColor = colors[this.type]["shadow"];
@@ -219,7 +247,7 @@ class Spell {
     pop();
 
     strokeWeight(0);
-    for(let i = 0; i < this.stars.length; i++){
+    for (let i = 0; i < this.stars.length; i++) {
       this.stars[i].draw();
     }
 
@@ -232,12 +260,10 @@ class Spell {
     // ellipse(this.ghostX + this.ghostSize * .2, this.ghostY - this.ghostSize * .1, this.ghostSize * .2);
     // ellipse(this.ghostX, this.ghostY + this.ghostSize * .2, this.ghostSize * .2);
   }
-
-  
 }
 
-class Star{
-  constructor(x, y, scale, color){
+class Star {
+  constructor(x, y, scale, color) {
     this.x = x;
     this.y = y;
     this.radius1 = 3;
@@ -249,7 +275,7 @@ class Star{
     this.velY = .4 + Math.random() * .2;
   }
 
-  draw(npoints=5) {
+  draw(npoints = 5) {
     let angle = TWO_PI / npoints;
     let halfAngle = angle / 2.0;
 
@@ -263,11 +289,11 @@ class Star{
     fill(this.color);
     beginShape();
     for (let a = 0; a < TWO_PI; a += angle) {
-      let sx =  cos(a) * this.radius2;
-      let sy =  sin(a) * this.radius2;
+      let sx = cos(a) * this.radius2;
+      let sy = sin(a) * this.radius2;
       vertex(sx, sy);
-      sx =  cos(a + halfAngle) * this.radius1;
-      sy =  sin(a + halfAngle) * this.radius1;
+      sx = cos(a + halfAngle) * this.radius1;
+      sy = sin(a + halfAngle) * this.radius1;
       vertex(sx, sy);
     }
     endShape(CLOSE);

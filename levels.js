@@ -28,12 +28,10 @@ const getCurrentLevel = (index) => {
       orionAppearance: [],
       cycleTime: 0,
       basketCollectables: {
-        carrot: 1, 
+        carrot: 1,
       },
-      helperCollectables: {
-
-      },
-      instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods as per recipe on top left corner.</p>`,
+      helperCollectables: {},
+      instruction: `<p class="flex font-bold text-lg" style="${style}">Move your mouse to pull the basket. Collect all the foods in the basket as per recipe on top left corner.</p>`,
     },
     {
       id: 2,
@@ -51,20 +49,20 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(20, 50), rotation: 0, type: "fire" },
-        { pos: createVector(1200, 150), rotation: 140, type: "water"},
+        { pos: createVector(1200, 150), rotation: 140, type: "water" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
         { pos: createVector(1500, 700), rotation: 190, type: "water" },
       ],
       orionAppearance: [100, 350, 600, 850, 1000],
       cycleTime: 1000,
       basketCollectables: {
-        eggs: 1
+        eggs: 1,
       },
       helperCollectables: {
         fire: 2,
-        water: 3
+        water: 3,
       },
-      instruction: `<p class="flex font-bold text-lg" style="${style}"> Cannot cook without fire & water -> Collect spells.. But too much is harmful ! (Hint: look at top right corner) </p>`,
+      instruction: `<p class="flex font-bold text-lg" style="${style}"> Cannot cook without fire & water? Collect spells by the alien ship.. But too much is harmful ! (Top right corner) </p>`,
     },
     {
       id: 3,
@@ -82,14 +80,14 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(20, 50), rotation: 0, type: "fire" },
-        { pos: createVector(1200, 150), rotation: 140, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 140, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000],
       cycleTime: 1000,
       basketCollectables: {
-        turkey: 1
+        turkey: 1,
       },
       helperCollectables: {
         fire: 2,
@@ -125,10 +123,10 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(1500, 700), rotation: 190, type: "fire" },
-        { pos: createVector(1200, 150), rotation:40, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 40, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000, 1100],
       cycleTime: 1100,
@@ -147,11 +145,12 @@ const getCurrentLevel = (index) => {
       id: 5,
       astronautPos: createVector(100, 100),
       planets: [
-        { pos: createVector(300, 400), type: "poisonous", r: 50 },
-        { pos: createVector(550, 200), type: "", r: 80 },
+        { pos: createVector(300, 500), type: "poisonous", r: 85 },
+        { pos: createVector(550, 200), type: "", r: 95 },
+        { pos: createVector(1000, 700), type: "poisonous", r: 100 },
       ],
-      earthPos: createVector(1200, 505),
-      helper: { pos: createVector(300, 450), r: 80 },
+      earthPos: createVector(1200, 150),
+      helper: { pos: createVector(300, 450), r: 90 },
       foods: [
         {
           pos: createVector(200, 150),
@@ -165,20 +164,27 @@ const getCurrentLevel = (index) => {
           width: 50,
           height: 40,
         },
+        {
+          pos: createVector(800, 500),
+          type: "potato",
+          width: 50,
+          height: 40,
+        },
       ],
       orionPos: [
         { pos: createVector(1500, 700), rotation: 190, type: "fire" },
-        { pos: createVector(1200, 150), rotation:40, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 40, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
         { pos: createVector(1500, 150), rotation: 140, type: "poison" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000, 1200, 1300],
       cycleTime: 1300,
       basketCollectables: {
         lettuce: 1,
         eggs: 1,
+        potato: 1,
       },
       helperCollectables: {
         fire: 1,
@@ -226,11 +232,11 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(1500, 700), rotation: 190, type: "fire" },
-        { pos: createVector(1200, 150), rotation:40, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 40, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
         { pos: createVector(1500, 150), rotation: 140, type: "poison" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000, 1200, 1300],
       cycleTime: 1300,
@@ -238,10 +244,10 @@ const getCurrentLevel = (index) => {
         lettuce: 1,
         eggs: 1,
         turkey: 1,
-        potato: 1
+        potato: 1,
       },
       helperCollectables: {
-        fire: 1
+        fire: 1,
       },
       instruction: `<p class="${className}" style="${style}">Best of luck!</p>`,
     },
@@ -252,8 +258,9 @@ const getCurrentLevel = (index) => {
         { pos: createVector(400, 400), type: "", r: 120 },
         { pos: createVector(550, 360), type: "increase", r: 70 },
         { pos: createVector(650, 250), type: "poisonous", r: 40 },
+        { pos: createVector(1000, 700), type: "poisonous", r: 80 },
       ],
-      earthPos: createVector(1000, 500),
+      earthPos: createVector(1450, 500),
       helper: { pos: createVector(450, 50), r: 80 },
       foods: [
         {
@@ -277,11 +284,11 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(1500, 700), rotation: 190, type: "fire" },
-        { pos: createVector(1200, 150), rotation:40, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 40, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
         { pos: createVector(1500, 150), rotation: 140, type: "poison" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000, 1200, 1300],
       cycleTime: 1300,
@@ -290,7 +297,7 @@ const getCurrentLevel = (index) => {
         eggs: 1,
       },
       helperCollectables: {
-        fire: 1
+        fire: 1,
       },
       instruction: `<p class="${className}" style="${style}">Touch the 'plus' planet to increase your gavitational pull. <span class-"inline"><img src="./assets/plus.png" width="20px"/></span></p>`,
     },
@@ -298,14 +305,14 @@ const getCurrentLevel = (index) => {
       id: 8,
       astronautPos: createVector(100, 150),
       planets: [
-        { pos: createVector(200, 150), type: "", r: 20 },
-        { pos: createVector(300, 50), type: "", r: 40 },
-        { pos: createVector(800, 300), type: "", r: 50 },
+        { pos: createVector(200, 130), type: "", r: 30 },
+        { pos: createVector(400, 120), type: "", r: 50 },
+        { pos: createVector(1200, 250), type: "", r: 90 },
         { pos: createVector(300, 360), type: "increase", r: 80 },
         { pos: createVector(450, 520), type: "poisonous", r: 40 },
         { pos: createVector(450, 280), type: "poisonous", r: 40 },
       ],
-      earthPos: createVector(1000, 500),
+      earthPos: createVector(1300, 700),
       helper: { pos: createVector(450, 50), r: 80 },
       foods: [
         {
@@ -329,11 +336,11 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(1500, 700), rotation: 190, type: "fire" },
-        { pos: createVector(1200, 150), rotation:40, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 40, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
         { pos: createVector(1500, 150), rotation: 140, type: "poison" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000, 1200, 1300],
       cycleTime: 1300,
@@ -342,7 +349,7 @@ const getCurrentLevel = (index) => {
         eggs: 1,
       },
       helperCollectables: {
-        fire: 1
+        fire: 1,
       },
       instruction: `<p class="${className}" style="${style}">Best of luck</p>`,
     },
@@ -384,11 +391,11 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(1500, 700), rotation: 190, type: "fire" },
-        { pos: createVector(1200, 150), rotation:40, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 40, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
         { pos: createVector(1500, 150), rotation: 140, type: "poison" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000, 1200, 1300],
       cycleTime: 1300,
@@ -397,7 +404,7 @@ const getCurrentLevel = (index) => {
         eggs: 1,
       },
       helperCollectables: {
-        fire: 1
+        fire: 1,
       },
       instruction: `<p class="${className}" style="${style}">Remember, the bigger is not always the better.</p>`,
     },
@@ -443,11 +450,11 @@ const getCurrentLevel = (index) => {
       ],
       orionPos: [
         { pos: createVector(1500, 700), rotation: 190, type: "fire" },
-        { pos: createVector(1200, 150), rotation:40, type: "poison"},
+        { pos: createVector(1200, 150), rotation: 40, type: "poison" },
         { pos: createVector(20, 500), rotation: 10, type: "water" },
         { pos: createVector(1500, 150), rotation: 140, type: "poison" },
         { pos: createVector(700, 700), rotation: 270, type: "fire" },
-        { pos: createVector(600, 50), rotation: 30, type: "poison"},
+        { pos: createVector(600, 50), rotation: 30, type: "poison" },
       ],
       orionAppearance: [100, 350, 600, 900, 1000, 1200, 1300],
       cycleTime: 1300,
@@ -456,7 +463,7 @@ const getCurrentLevel = (index) => {
         eggs: 1,
       },
       helperCollectables: {
-        fire: 1
+        fire: 1,
       },
       instruction: `<p class="${className}" style="${style}">Touch the 'minus' planet to decrease your size. <span class-"inline"><img src="./assets/minus.png" width="20px"/></span></p>`,
     },
