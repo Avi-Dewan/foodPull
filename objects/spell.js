@@ -211,8 +211,11 @@ class Spell {
         );
       }
 
-      if (this.stars.length >= 15) this.stars.pop();
-    }
+      if (this.stars.length >= 15) {
+        this.stars.pop();
+        this.stars.pop();
+        this.stars.pop();
+      };    }
 
     drawingContext.shadowColor = colors[this.type]["shadow"];
 

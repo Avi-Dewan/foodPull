@@ -46,6 +46,7 @@ let planetImg = [];
 let randomPos = [];
 let loopCount = 0;
 let notiText = "";
+let mouseFollower;
 
 // stat variables
 let run = false;
@@ -244,6 +245,7 @@ function setup() {
 
   // spell = new Spell("", 80, 400, 500);
   // currentSpells.push(spell);
+  mouseFollower =  new MouseFollower()
 }
 
 function startNewLevel() {
@@ -317,7 +319,6 @@ function startNewLevel() {
       )
     );
   });
-  console.log(foods);
 
   astronaut = new Astronaut(astronautImg, level.astronautPos, 0.0003, foodImgs);
   orion = new Orion(
@@ -330,13 +331,24 @@ function startNewLevel() {
   );
 }
 
-function draw() {
-  // translate(-width / 2, -height / 2);
+function draw() {  
+  
+  if(!run) {
+    push();
+    blendMode(BLEND);
+    background(10);
+    blendMode(SCREEN);
+    drawbg();
+    mouseFollower.draw();
+    pop()
+    return ;
+  }
+
   blendMode(BLEND);
   background(10);
   blendMode(SCREEN);
-
   drawbg();
+
 
   Object.keys(foodsCollected).forEach((key, i) => {
     foodsCollected[key][0] = foods.filter(
@@ -426,12 +438,6 @@ function draw() {
 
   currentSpells = currentSpells.filter((sp) => sp.alive);
   if (run) currentSpells.forEach((sp) => sp.draw(helper, astronaut));
-
-  if (run) {
-    loop();
-  } else {
-    noLoop();
-  }
 }
 
 function drawbg() {
