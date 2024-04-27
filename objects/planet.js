@@ -92,11 +92,15 @@ class Planet {
     }
     if (this.type === "increase") {
       let size = min(this.r - 10, 20);
+      blendMode(BLEND);
       image(plusImg, this.pos.x - size / 2, this.pos.y - size / 2, size, size);
+      blendMode(SCREEN);
     }
     if (this.type === "decrease") {
       let size = min(this.r - 10, 20);
+      blendMode(BLEND);
       image(minusImg, this.pos.x - size / 2, this.pos.y - size / 2, size, size);
+      blendMode(SCREEN);
     }
     noStroke();
     noFill();
