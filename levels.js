@@ -147,11 +147,12 @@ const getCurrentLevel = (index) => {
       id: 5,
       astronautPos: createVector(100, 100),
       planets: [
-        { pos: createVector(300, 400), type: "poisonous", r: 50 },
-        { pos: createVector(550, 200), type: "", r: 80 },
+        { pos: createVector(300, 500), type: "poisonous", r: 85 },
+        { pos: createVector(550, 200), type: "", r: 95 },
+        { pos: createVector(1000, 700), type: "poisonous", r: 100 },
       ],
-      earthPos: createVector(1200, 505),
-      helper: { pos: createVector(300, 450), r: 80 },
+      earthPos: createVector(1200, 150),
+      helper: { pos: createVector(300, 450), r: 90 },
       foods: [
         {
           pos: createVector(200, 150),
@@ -162,6 +163,12 @@ const getCurrentLevel = (index) => {
         {
           pos: createVector(600, 300),
           type: "eggs",
+          width: 50,
+          height: 40,
+        },
+        {
+          pos: createVector(800, 500),
+          type: "potato",
           width: 50,
           height: 40,
         },
@@ -179,6 +186,7 @@ const getCurrentLevel = (index) => {
       basketCollectables: {
         lettuce: 1,
         eggs: 1,
+        potato: 1,
       },
       helperCollectables: {
         fire: 1,
@@ -252,8 +260,9 @@ const getCurrentLevel = (index) => {
         { pos: createVector(400, 400), type: "", r: 120 },
         { pos: createVector(550, 360), type: "increase", r: 70 },
         { pos: createVector(650, 250), type: "poisonous", r: 40 },
+        { pos: createVector(1000, 700), type: "poisonous", r: 80 },
       ],
-      earthPos: createVector(1000, 500),
+      earthPos: createVector(1450, 500),
       helper: { pos: createVector(450, 50), r: 80 },
       foods: [
         {
