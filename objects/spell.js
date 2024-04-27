@@ -14,7 +14,7 @@ const colors = {
   poison: {
     fill: [100, 10, 255],
     shadow: "#00ff00",
-    falloff: 1,
+    falloff: .8,
     shades: ["#00ddaa", "#22ee00", "#11ff00"]
   },
 };
@@ -244,11 +244,17 @@ class Star{
     this.radius2 = 6;
     this.color = color;
     this.scale = scale;
+
+    this.velX = .2 + Math.random() * .2;
+    this.velY = .4 + Math.random() * .2;
   }
 
   draw(npoints=5) {
     let angle = TWO_PI / npoints;
     let halfAngle = angle / 2.0;
+
+    this.x += this.velX;
+    this.y += this.velY;
 
     push();
     translate(this.x, this.y);
