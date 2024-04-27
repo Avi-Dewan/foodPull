@@ -64,6 +64,7 @@ class Orion {
       let y = 45;
       let theta = (this.positions[posIdx].rotation * PI) / 180;
 
+      // console.log(this.positions[posIdx].type,);
       if ((frameCount % this.cycleTime) - this.orionAppearance[posIdx] === 50) {
         currentSpells.push(
           new Spell(
