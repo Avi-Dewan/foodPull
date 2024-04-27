@@ -259,8 +259,6 @@ function startNewLevel() {
     foodsCollected[key] = [0, level.basketCollectables[key]];
   });
 
-  console.log(foodsCollected);
-
   Object.keys(level.helperCollectables).forEach((key) => {
     spellsCollected[key] = [0, level.helperCollectables[key]];
   });
