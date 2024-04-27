@@ -73,7 +73,7 @@ const pauseResetMenu = document.getElementById("pauseReset");
 const notificationBox = document.getElementById("notification");
 const instructionBox = document.getElementById("instruction");
 
-const levelButtons = [...Array(12)].map((_, idx) => {
+const levelButtons = [...Array(9)].map((_, idx) => {
   return document.getElementById(`lvl${idx + 1}`);
 });
 
