@@ -73,6 +73,7 @@ class Planet {
         if (resetY) vely = 0;
         this.vel = createVector(velx, vely);
 
+        blendMode(BLEND);
         image(
           this.img,
           this.pos.x - this.r / 2,
@@ -80,6 +81,7 @@ class Planet {
           this.r,
           this.r
         );
+        blendMode(SCREEN);
       } else {
         image(
           this.img,

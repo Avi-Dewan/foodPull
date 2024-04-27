@@ -11,8 +11,11 @@ class Food {
 
   draw(astronaut) {
     if (!this.isGrabbed) this.detectCollision(astronaut);
-    if (!this.isGrabbed)
+    if (!this.isGrabbed) {
+      blendMode(BLEND);
       image(this.img, this.pos.x, this.pos.y, this.width, this.height);
+      blendMode(SCREEN);
+    }
   }
 
   detectCollision(astronaut) {
