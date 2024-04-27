@@ -173,9 +173,10 @@ function preload() {
   potFoodImg = loadImage("./assets/pot-food.png");
   potFireFoodImg = loadImage("./assets/pot-fire-food.png");
 
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 3; i++) {
     castSpells.push(loadSound(`./assets/sounds/cast-${i}.mp3`));
-    catchSpells.push(loadSound(`./assets/sounds/catch-${i}.mp3`));
+    if (i < 2) catchSpells.push(loadSound(`./assets/sounds/catch-${i}.mp3`));
+    else catchSpells.push(damageSound);
   }
 }
 
